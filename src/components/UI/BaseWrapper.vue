@@ -3,7 +3,7 @@
     <header>
       <the-header current-page-num="1"></the-header>
     </header>
-    <main class="flex justify-between gap-16">
+    <main class="flex justify-between gap-36">
       <div class="flex-1 pt-12">
         <slot></slot>
       </div>

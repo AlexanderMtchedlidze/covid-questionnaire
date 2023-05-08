@@ -2,20 +2,15 @@
   <base-wrapper image-file-name="identification.png">
     <form>
       <div class="flex flex-col gap-8">
-        <div>
-          <label for="name" class="block font-bold text-xl">სახელი*</label>
-          <input type="text" id="name" class="bg-transparent border" />
-        </div>
-        <div>
-          <label for="surname" class="block font-bold text-xl">გვარი*</label>
-          <input type="text" id="surname" class="bg-transparent border" />
-        </div>
-        <div>
-          <label for="email" class="block font-bold text-xl">იმეილი*</label>
-          <input type="email" id="email" class="bg-transparent border" />
-        </div>
+        <the-input name="name" label="სახელი" placeholder="იოსებ"> </the-input>
+        <the-input name="surname" label="გვარი" placeholder="ჯუღაშვილი"> </the-input>
+        <the-input name="email" label="იმეილი" type="email" placeholder="fbi@redberry.ge"> </the-input>
       </div>
     </form>
+    <div class="mt-10 absolute">
+      <img src="/icons/form line.svg" alt="" class="absolute">
+      <p class="font-bold text-gray-500 pt-2">*-ით მონიშნული ველების შევსება <br> სავალდებულოა</p>
+    </div>
   </base-wrapper>
 </template>
 
