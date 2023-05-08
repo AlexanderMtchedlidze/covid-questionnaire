@@ -3,7 +3,7 @@
     class="flex justify-between items-center pb-4 border-b-2 border-b-gray-black"
   >
     <img
-      src="../../assets/icons/named logo.svg"
+      src="/images/main logo.png"
       alt="Redberry Company Logo"
       class="h-6"
     />
