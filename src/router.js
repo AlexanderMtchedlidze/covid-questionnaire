@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 const IndexPage = () => import("./pages/IndexPage.vue");
-const PersonIdentification = () => import("./pages/PersonIdentification.vue");
+import PersonIdentification from "./pages/PersonIdentification.vue";
 
 const router = createRouter({
   routes: [

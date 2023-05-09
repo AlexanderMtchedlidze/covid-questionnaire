@@ -12,3 +12,13 @@ body {
   background-color: #eaeaea;
 }
 </style>
+
+<script setup>
+import { configure } from "vee-validate";
+import customValMessages from "./lang/messages.js";
+
+configure({
+  ...customValMessages,
+  validateOnInput: true,
+});
+</script>
