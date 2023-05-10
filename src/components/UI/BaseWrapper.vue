@@ -15,11 +15,14 @@
       </div>
     </main>
   </div>
+  <footer>
+    <slot name="footer"></slot>
+  </footer>
 </template>
 
 <script setup>
-import { computed } from "vue";
-import TheHeader from "../layout/TheHeader.vue";
+import { computed, defineAsyncComponent } from "vue";
+const TheHeader = defineAsyncComponent(() => import("../layout/TheHeader.vue"));
 const props = defineProps({
   imageFileName: {
     type: String,

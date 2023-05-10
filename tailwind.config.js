@@ -10,7 +10,8 @@ export default {
         "gray-20": "#EAEAEA",
       },
       colors: {
-        "gray-black": "#232323",
+        "dark-gray": "#232323",
+        "invalid": "#F15524",
       }
     },
   },

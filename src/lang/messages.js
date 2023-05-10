@@ -18,7 +18,7 @@ export default {
     names: {
       name: "სახელის ველი",
       surname: "გვარის ველი",
-      mail: "მეილი",
+      mail: "მეილის ველი",
     },
     messages: {
       required: "{field}ს შევსება სავალდებულოა",

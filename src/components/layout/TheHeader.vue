@@ -1,12 +1,8 @@
 <template>
   <header
-    class="flex justify-between items-center pb-4 border-b-2 border-b-gray-black"
+    class="flex justify-between items-center pb-4 border-b-2 border-b-dark-gray"
   >
-    <img
-      src="/images/main logo.png"
-      alt="Redberry Company Logo"
-      class="h-6"
-    />
+    <img src="/images/main logo.png" alt="Redberry Company Logo" class="h-6" />
     <span class="text-3xl font-semibold flex gap-2">
       <span>{{ currentPageNum }}</span>
       <span>/</span>
@@ -16,18 +12,12 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-
 const ALL_PAGES_NUM = 4;
 
-const props = defineProps({
+defineProps({
   currentPageNum: {
     type: String,
     required: true,
   },
 });
-
-const currentPageOfAllPages = computed(
-  () => props.currentPageNum + "/" + ALL_PAGES_NUM
-);
 </script>
