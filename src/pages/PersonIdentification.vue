@@ -1,5 +1,5 @@
 <template>
-  <base-form image-file-name="identification.png">
+  <base-wrapper image-file-name="identification.png">
     <div class="flex flex-col gap-8">
       <form-input
         name="name"
@@ -37,7 +37,7 @@
         to="/condition"
       ></forward-nav>
     </nav-wrapper>
-  </base-form>
+  </base-wrapper>
 </template>
 
 <script setup>
@@ -52,15 +52,11 @@ const nameRules = computed(() => ({
   min: minValue,
 }));
 
-const { errors } = useForm();
+const { meta } = useForm();
 
-const shouldAllowForward = ref(localStorage.getItem("errors") || false);
-console.log(shouldAllowForward.value)
+const shouldAllowForward = ref(meta.value.valid && meta.value.dirty);
 
-watch(errors, (newVal) => {
-  console.log(newVal);
-  shouldAllowForward.value = Object.keys(newVal).length === 0;
-  localStorage.setItem("errors", Object.keys(newVal).length === 0);
-  console.log(localStorage.getItem("errors"))
-});
+watch(meta, (val) => {
+  shouldAllowForward.value = val.valid;
+})
 </script>

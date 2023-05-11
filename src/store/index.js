@@ -14,6 +14,9 @@ const store = createStore({
       surname: null,
       email: null,
       hadCovid: null,
+      hadAntibodies: null,
+      covidDate: null,
+      antibodiesDate: null,
     };
   },
   actions,

@@ -1,55 +1,123 @@
 <template>
-  <base-form image-file-name="vaccinate.png" :validation-schema="schema">
-    <p class="block font-bold text-xl mb-3">გაქვს გადატანილი Covid-19?*</p>
-    <form-radio
-      id="had_covid_yes"
-      v-model="hadCovid"
-      name="had_covid"
-      value="yes"
-      label="კი"
-    />
-    <form-radio
-      id="had_covid_no"
-      v-model="hadCovid"
-      name="had_covid"
-      value="no"
-      label="არა"
-    />
-    <form-radio
-      id="had_covid_now"
-      v-model="hadCovid"
-      name="had_covid"
-      value="now"
-      label="ახლა მაქვს"
-    />
-    <ErrorMessage name="had-covid" />
+  <base-wrapper image-file-name="vaccinate.png">
+    <div class="flex flex-col gap-10">
+      <div>
+        <radio-label>გაქვს გადატანილი Covid-19?*</radio-label>
+        <form-radio
+          id="had_covid_yes"
+          v-model="hadCovid"
+          name="had_covid"
+          value="yes"
+          label="კი"
+        />
+        <form-radio
+          id="had_covid_no"
+          v-model="hadCovid"
+          name="had_covid"
+          value="no"
+          label="არა"
+        />
+        <form-radio
+          id="had_covid_now"
+          v-model="hadCovid"
+          name="had_covid"
+          value="now"
+          label="ახლა მაქვს"
+        />
+        <ErrorMessage name="had-covid" />
+      </div>
+      <div v-if="isHavingCovid">
+        <radio-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </radio-label>
+        <form-radio
+          id="had_antibodies_yes"
+          v-model="hadAntibodies"
+          name="had_antibodies"
+          value="yes"
+          label="კი"
+        ></form-radio>
+        <form-radio
+          id="had_antibodies_no"
+          v-model="hadAntibodies"
+          name="had_antibodies"
+          value="no"
+          label="არა"
+        ></form-radio>
+      </div>
+      <div v-if="isHavingAntibodies">
+        <radio-label>
+          თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
+          რაოდენობა?*
+        </radio-label>
+        <form-input
+          name="antibodiesDate"
+          rules="required|date_format"
+          placeholder="რიცხვი"
+        />
+        <form-input
+          name="antibodiesQuantity"
+          type="number"
+          placeholder="ანტისხეულების რაოდენობა"
+          rules="required"
+        />
+      </div>
+      <div v-if="isNotHavingAntibodies">
+        <radio-label>
+          მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*
+        </radio-label>
+        <form-input
+          name="covidDate"
+          rules="required|date_format"
+          placeholder="დდ/თთ/წწ"
+        />
+      </div>
+    </div>
     <nav-wrapper>
       <backward-nav to="/identification"></backward-nav>
-      <forward-nav to="/test"></forward-nav>
+      <forward-nav
+        to="/test"
+        :should-allow-forward="shouldAllowForward"
+      ></forward-nav>
     </nav-wrapper>
-  </base-form>
+  </base-wrapper>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-import { ErrorMessage } from "vee-validate";
+import { ref, watch, computed } from "vue";
+import { ErrorMessage, useForm } from "vee-validate";
 import { useStore } from "vuex";
-const store = useStore();
-const schema = {
-  had_covid: (value) => {
-    if (value) {
-      return true;
-    }
 
-    return "You must choose a drink";
-  },
-};
-const hadCovid = ref(store.getters.hadCovid || null);
-console.log(localStorage.getItem("hadCovid"))
+const store = useStore();
+
+const { meta } = useForm();
+
+const shouldAllowForward = ref(meta.value.valid && meta.value.dirty);
+
+watch(meta, (newVal) => {
+  shouldAllowForward.value = newVal.valid && newVal.dirty;
+});
+
+const isHavingCovid = computed(() => hadCovid.value === "yes");
+const isHavingAntibodies = computed(
+  () => hadCovid.value === "yes" && hadAntibodies.value === "yes"
+);
+const isNotHavingAntibodies = computed(
+  () => hadCovid.value === "yes" && hadAntibodies.value === "no"
+);
+
+const hadCovid = ref(store.getters.hadCovid);
 watch(hadCovid, (newVal) => {
   store.dispatch({
     type: "setInputValue",
     name: "hadCovid",
+    value: newVal,
+  });
+});
+
+const hadAntibodies = ref(store.getters.hadAntibodies);
+watch(hadAntibodies, (newVal) => {
+  store.dispatch({
+    type: "setInputValue",
+    name: "hadAntibodies",
     value: newVal,
   });
 });

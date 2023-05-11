@@ -4,6 +4,7 @@
 
 <script setup>
 import { configure } from "vee-validate";
+import "./validation/rules.js";
 import customValMessages from "./lang/messages.js";
 
 configure({

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input-label :for="name">{{ label }}</input-label>
+    <input-label v-if="label" :for="name">{{ label }}</input-label>
     <Field
       :id="name"
       v-model.trim="value"
@@ -27,7 +27,8 @@ const props = defineProps({
   },
   label: {
     type: String,
-    required: true,
+    required: false,
+    default: "",
   },
   type: {
     type: String,

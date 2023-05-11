@@ -11,7 +11,10 @@ const InputLabel = defineAsyncComponent(() =>
   import("./components/form/InputLabel.vue")
 );
 const FormRadio = defineAsyncComponent(() =>
-  import("./components/form/FormRadio.vue")
+  import("./components/form/radio/FormRadio.vue")
+);
+const RadioLabel = defineAsyncComponent(() =>
+  import("./components/form/radio/RadioLabel.vue")
 );
 const NavigationWrapper = defineAsyncComponent(() =>
   import("./components/layout/nav/NavigationWrapper.vue")
@@ -22,8 +25,8 @@ const ForwardNavigation = defineAsyncComponent(() =>
 const BackwardNavigation = defineAsyncComponent(() =>
   import("./components/layout/nav/BackwardNavigation.vue")
 );
-const BaseForm = defineAsyncComponent(() =>
-  import("./components/UI/BaseForm.vue")
+const BaseWrapper = defineAsyncComponent(() =>
+  import("./components/UI/BaseWrapper.vue")
 );
 
 const app = createApp(App);
@@ -34,7 +37,8 @@ app.component("ForwardNav", ForwardNavigation);
 app.component("BackwardNav", BackwardNavigation);
 app.component("InputLabel", InputLabel);
 app.component("FormRadio", FormRadio);
-app.component("BaseForm", BaseForm);
+app.component("BaseWrapper", BaseWrapper);
+app.component("RadioLabel", RadioLabel);
 
 app.use(router);
 

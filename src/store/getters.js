@@ -12,5 +12,17 @@ export default {
   },
   hadCovid(state) {
     return getValue(state, "hadCovid");
+  },
+  hadAntibodies(state) {
+    return getValue(state, "hadAntibodies");
+  },
+  covidDate(state) {
+    return getValue(state, "covidDate"); 
+  },
+  antibodiesDate(state) {
+    return getValue(state, "antibodiesDate"); 
+  },
+  antibodiesQuantity(state) {
+    return getValue(state, "antibodiesQuantity"); 
   }
 };
