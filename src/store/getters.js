@@ -9,5 +9,8 @@ export default {
   },
   mail(state) {
     return getValue(state, "mail");
+  },
+  hadCovid(state) {
+    return getValue(state, "hadCovid");
   }
 };

@@ -13,6 +13,7 @@ const store = createStore({
       name: null,
       surname: null,
       email: null,
+      hadCovid: null,
     };
   },
   actions,

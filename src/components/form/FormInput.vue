@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="name" class="block font-bold text-xl">{{ label }}*</label>
+    <input-label :for="name">{{ label }}</input-label>
     <Field
       :id="name"
       v-model.trim="value"
@@ -8,11 +8,10 @@
       :name="name"
       :placeholder="placeholder"
       :rules="rules"
-      class="bg-transparent mb-1 border border-black mt-2 py-3 px-4 w-full text-lg placeholder-gray-500"
-      @input="onInput"
-      @blur="onInputTouch"
+      class="bg-transparent mb-1 border border-black mt-2 py-2 px-4 w-full text-lg placeholder-gray-500"
+      @input="setValue"
     />
-    <ErrorMessage :name="name" class="text-invalid" />
+    <ErrorMessage :name="name" class="text-invalid text-sm" />
   </div>
 </template>
 
@@ -21,7 +20,6 @@ import { ref } from "vue";
 import { Field, ErrorMessage } from "vee-validate";
 import { useStore } from "vuex";
 const store = useStore();
-const emit = defineEmits(["inputHasTouched"]);
 const props = defineProps({
   name: {
     type: String,
@@ -46,15 +44,11 @@ const props = defineProps({
   },
 });
 const value = ref(store.getters[props.name]);
-const onInput = () => {
-  emit("inputHasTouched");
+const setValue = () => {
   store.dispatch({
     type: "setInputValue",
     name: props.name,
     value: value.value,
   });
 };
-const onInputTouch = () => {
-  emit("inputHasTouched")
-}
 </script>

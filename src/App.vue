@@ -13,10 +13,7 @@ configure({
 </script>
 
 <style>
-@font-face {
-  font-family: "Arial";
-  src: url("./assets/fonts/bpg_arial_2009.ttf");
-}
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@700&display=swap");
 
 body {
   background-color: #eaeaea;
