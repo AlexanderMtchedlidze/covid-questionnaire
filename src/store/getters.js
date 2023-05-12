@@ -6,7 +6,13 @@ export default {
     return (
       (getters.antibodiesDate && getters.antibodiesQuantity) ||
       getters.covidDate ||
-      getters.hadCovid !== "yes"
+      (getters.hadCovid && getters.hadCovid !== "yes")
+    );
+  },
+  isVaccinationPageCompleted(_, getters) {
+    return (
+      (getters.vaccinated === "yes" && getters.stage) ||
+      (getters.vaccinated === "no" && getters.waitingFor)
     );
   },
   name(state) {

@@ -1,7 +1,7 @@
 <template>
   <label
     :for="props.for"
-    class="block text-xl"
+    class="block text-lg"
     :class="{ 'font-bold': props.asterisk }"
   >
     <span>

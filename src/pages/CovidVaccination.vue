@@ -107,10 +107,10 @@ const store = useStore();
 
 const { meta } = useForm();
 
-const shouldAllowForward = ref(meta.value.valid && meta.value.dirty);
+const shouldAllowForward = ref(store.getters.isVaccinationPageCompleted);
 
-watch(meta, (newValue) => {
-  shouldAllowForward.value = newValue.valid && newValue.dirty;
+watch(meta, () => {
+  shouldAllowForward.value = store.getters.isVaccinationPageCompleted;
 });
 
 const vaccinated = ref(store.getters.vaccinated);
