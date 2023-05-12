@@ -2,7 +2,9 @@
   <router-link v-if="shouldAllowForward" to="/thanks" :class="buttonClass">
     დასრულება
   </router-link>
-  <button v-else :class="buttonClass">დასრულება</button>
+  <button v-else :class="buttonClass" class="button__inactive">
+    დასრულება
+  </button>
 </template>
 
 <script setup>
@@ -13,13 +15,21 @@ const props = defineProps({
     required: true,
   },
 });
-const buttonClass = computed(() => ({
-  "text-white": true,
-  "px-6": true,
-  "py-2": true,
-  "rounded-full": true,
-  "font-bold": true,
-  "bg-dark-cyan": props.shouldAllowForward,
-  "bg-light-cyan": !props.shouldAllowForward,
-}));
+const buttonClass = computed(() => [
+  "text-white",
+  "px-6",
+  "py-2",
+  "rounded-full",
+  "font-bold",
+  {
+    "bg-dark-cyan": props.shouldAllowForward,
+    "bg-light-cyan": !props.shouldAllowForward,
+  },
+]);
 </script>
+
+<style scoped>
+.button__inactive {
+  cursor: default;
+}
+</style>
