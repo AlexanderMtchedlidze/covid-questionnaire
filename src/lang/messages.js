@@ -8,7 +8,7 @@ export default {
       mail: "მეილის ველი",
       covidDate: "პერიოდი",
       antibodiesDate: 'რიცხვი',
-      quantity: 'ანტისხეულების რაოდენობი'
+      antibodiesQuantity: 'ანტისხეულების რაოდენობი'
     },
     messages: {
       required: "{field}ს შევსება სავალდებულოა",

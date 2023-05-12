@@ -1,7 +1,7 @@
 <template>
   <div class="mx-44 py-10 h-screen">
     <header>
-      <the-header current-page-num="1"></the-header>
+      <the-header :current-page-num="pageNum"></the-header>
     </header>
     <main class="flex justify-between gap-24">
       <div class="flex-1 pt-12 pb-4">
@@ -22,6 +22,10 @@ import { computed, defineAsyncComponent } from "vue";
 const TheHeader = defineAsyncComponent(() => import("../layout/TheHeader.vue"));
 const props = defineProps({
   imageFileName: {
+    type: String,
+    required: true,
+  },
+  pageNum: {
     type: String,
     required: true,
   },

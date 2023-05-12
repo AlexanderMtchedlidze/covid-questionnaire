@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper image-file-name="vaccinate.png">
+  <base-wrapper image-file-name="vaccinate.png" page-num="2">
     <div class="flex flex-col gap-10">
       <div>
         <radio-label>გაქვს გადატანილი Covid-19?*</radio-label>
@@ -74,7 +74,7 @@
     <nav-wrapper>
       <backward-nav to="/identification"></backward-nav>
       <forward-nav
-        to="/test"
+        to="/vaccination"
         :should-allow-forward="shouldAllowForward"
       ></forward-nav>
     </nav-wrapper>
@@ -90,10 +90,13 @@ const store = useStore();
 
 const { meta } = useForm();
 
-const shouldAllowForward = ref(meta.value.valid && meta.value.dirty);
+const shouldAllowForward = ref(
+  meta.value.valid && store.getters.isConditionPageCompleted
+);
 
 watch(meta, (newVal) => {
-  shouldAllowForward.value = newVal.valid && newVal.dirty;
+  shouldAllowForward.value =
+    newVal.valid && store.getters.isConditionPageCompleted;
 });
 
 const isHavingCovid = computed(() => hadCovid.value === "yes");

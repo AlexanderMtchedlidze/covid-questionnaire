@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-5">
+  <div class="flex items-center gap-5 mb-2">
     <Field :id="id" :name="name" type="radio" :value="value" @click="setValue(value)" />
     <input-label :for="id" :asterisk="false">{{ label }}</input-label>
   </div>

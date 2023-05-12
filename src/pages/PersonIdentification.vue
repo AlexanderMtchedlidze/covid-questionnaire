@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper image-file-name="identification.png">
+  <base-wrapper image-file-name="identification.png" page-num="1">
     <div class="flex flex-col gap-8">
       <form-input
         name="name"
@@ -58,5 +58,5 @@ const shouldAllowForward = ref(meta.value.valid && meta.value.dirty);
 
 watch(meta, (val) => {
   shouldAllowForward.value = val.valid;
-})
+});
 </script>
