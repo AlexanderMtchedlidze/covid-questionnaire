@@ -76,8 +76,6 @@ const hadAntibodiesOptions = store.getters.hadAntibodiesOptions;
 
 const { meta } = useForm();
 
-console.log(!!store.getters.isConditionPageCompleted);
-
 const shouldAllowForward = ref(
   meta.value.valid && !!store.getters.isConditionPageCompleted
 );

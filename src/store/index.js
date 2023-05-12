@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
 
-import identificationModule from "./modules/identification.js";
-import conditionModule from "./modules/condition.js";
-import vaccinationModule from "./modules/vaccination.js";
-import politicsModule from "./modules/politics.js";
+import identificationModule from "./modules/identification/index.js";
+import conditionModule from "./modules/condition/index.js";
+import vaccinationModule from "./modules/vaccination/index.js";
+import politicsModule from "./modules/politics/index.js";
 
 const store = createStore({
   modules: {
@@ -12,7 +12,6 @@ const store = createStore({
     vaccination: vaccinationModule,
     politics: politicsModule,
   },
-
   actions: {
     setInputValue(context, payload) {
       context.commit("setInputValue", payload);
