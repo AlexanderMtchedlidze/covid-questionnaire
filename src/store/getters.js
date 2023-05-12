@@ -5,9 +5,10 @@ export default {
   isConditionPageCompleted(_, getters) {
     return (
       (getters.antibodiesDate && getters.antibodiesQuantity) ||
-      getters.covidDate
+      getters.covidDate ||
+      getters.hadCovid !== "yes"
     );
-  },  
+  },
   name(state) {
     return getValue(state, "name");
   },

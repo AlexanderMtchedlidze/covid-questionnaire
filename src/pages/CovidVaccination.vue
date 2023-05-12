@@ -46,26 +46,46 @@
       <div v-else-if="isNotVaccinated">
         <radio-label>რას ელოდები?*</radio-label>
         <form-radio
-          id="first_dose_and_registered"
+          id="registered_and_waiting"
           v-model="waitingFor"
           name="waitingFor"
-          value="first_dose_and_registered"
+          value="registered_and_waiting"
           label="დარეგისტრირებული ვარ და ველოდები რიცხვს"
         />
         <form-radio
-          id="fully_vaccinated"
+          id="not_planning"
           v-model="waitingFor"
           name="waitingFor"
-          value="fully_vaccinated"
+          value="not_planning"
           label="არ ვგეგმავ"
         />
         <form-radio
-          id="first_dose_and_not_registered"
+          id="recovered_and_planning"
           v-model="waitingFor"
           name="waitingFor"
-          value="first_dose_and_not_registered"
+          value="recovered_and_planning"
           label="გადატანილი მაქვს და ვგეგმავ აცრას"
         />
+      </div>
+      <div v-if="vaccinatedAndNotRegistered" class="text-lg">
+        <p>
+          რომ არ გადადო, <br />
+          ბარემ ახლავე დარეგისტრირდი
+          <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
+            >https://booking.moh.gov.ge/
+          </a>
+        </p>
+      </div>
+      <div v-else-if="notVaccinatedAndPlanningRegistering" class="text-lg">
+        <p>
+          ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ ვაქცინის
+          გაკეთება.
+        </p>
+
+        <p class="mt-3">
+          👉 რეგისტრაციის ბმული <br />
+          <a href="https://booking.moh.gov.ge/" class="text-dark-cyan">https://booking.moh.gov.ge/</a>
+        </p>
       </div>
     </div>
     <nav-wrapper>
@@ -105,6 +125,12 @@ watch(vaccinated, (value) => {
 
 const stage = ref(store.getters.stage);
 
+const vaccinatedAndNotRegistered = computed(
+  () =>
+    vaccinated.value === "yes" &&
+    stage.value === "first_dose_and_not_registered"
+);
+
 watch(stage, (value) => {
   store.dispatch({
     type: "setInputValue",
@@ -122,6 +148,10 @@ const isNotVaccinated = computed(() => {
 });
 
 const waitingFor = ref(store.getters.waitingFor);
+
+const notVaccinatedAndPlanningRegistering = computed(
+  () => vaccinated.value === "no" && waitingFor.value === "recovered_and_planning"
+);
 
 watch(waitingFor, (value) => {
   store.dispatch({

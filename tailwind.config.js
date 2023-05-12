@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         arial: ["Arial", "sans-serif"],
-        'Anonymous-Pro': ["Anonymous Pro", "mono"],
+        "Anonymous-Pro": ["Anonymous Pro", "mono"],
       },
       backgroundColor: {
         "gray-20": "#EAEAEA",
@@ -13,6 +13,7 @@ export default {
       colors: {
         "dark-gray": "#232323",
         invalid: "#F15524",
+        "dark-cyan": "#1289AE",
       },
     },
   },
