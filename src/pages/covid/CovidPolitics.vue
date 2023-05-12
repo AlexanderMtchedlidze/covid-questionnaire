@@ -14,11 +14,11 @@
         </p>
       </div>
       <div>
-        <radio-label>
+        <group-label>
           რა სიხშირით შეიძლება გვქონდეს საერთო არაფორმალური ონლაინ შეხვედრები,
           სადაც ყველა სურვილისამებრ ჩაერთვება?*
-        </radio-label>
-        <form-radio
+        </group-label>
+        <radio-input
           v-for="day in meetingDays"
           :id="day.value"
           :key="day.value"
@@ -29,10 +29,10 @@
         />
       </div>
       <div>
-        <radio-label>
+        <group-label>
           კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*
-        </radio-label>
-        <form-radio
+        </group-label>
+        <radio-input
           v-for="day in officeWorkingDays"
           :id="day.value"
           :key="day.value"
@@ -42,36 +42,58 @@
           :label="day.label"
         />
       </div>
+      <div>
+        <group-label> რას ფიქრობ ფიზიკურ შეკრებებზე? </group-label>
+        <FormTextarea name="opinionAboutMeetings" />
+      </div>
+      <div>
+        <group-label
+          >რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას
+          შეცვლიდი?
+        </group-label>
+        <FormTextarea name="opinionAboutEnvironment" />
+      </div>
+      <div class="flex justify-end">
+       <ending-button :should-allow-forward="shouldAllowForward"></ending-button>
+      </div>
     </div>
     <nav-wrapper>
       <backward-nav to="/vaccination"></backward-nav>
-      <forward-nav
-        to="/thanks"
-        :should-allow-forward="shouldAllowForward"
-      ></forward-nav>
     </nav-wrapper>
   </base-wrapper>
 </template>
 
 <script setup>
+import FormTextarea from "../../components/form/textarea/FormTextarea.vue";
+import EndingButton from "../../components/layout/nav/EndingButton.vue";
 import { ref, watch } from "vue";
-import { useForm } from "vee-validate";
 import { useStore } from "vuex";
 
 const store = useStore();
+
+const shouldAllowForward = ref(!!store.getters.isPoliticsPageCompleted);
 
 const meetingDays = store.getters.meetingDays;
 
 const officeWorkingDays = store.getters.officeWorkingDays;
 
-const { meta } = useForm();
+const meetingFrequency = ref(store.getters.meetingFrequency);
 
-const shouldAllowForward = ref(
-  meta.value.valid && store.getters.isConditionPageCompleted
-);
+watch(meetingFrequency, (value) => {
+  shouldAllowForward.value = ref(!!store.getters.isPoliticsPageCompleted);
+  store.dispatch("setInputValue", {
+    name: "meetingFrequency",
+    value,
+  });
+});
 
-watch(meta, (newVal) => {
-  shouldAllowForward.value =
-    newVal.valid && store.getters.isConditionPageCompleted;
+const officeWorkFrequency = ref(store.getters.officeWorkFrequency);
+
+watch(officeWorkFrequency, (value) => {
+  shouldAllowForward.value = ref(!!store.getters.isPoliticsPageCompleted);
+  store.dispatch("setInputValue", {
+    name: "officeWorkFrequency",
+    value,
+  });
 });
 </script>

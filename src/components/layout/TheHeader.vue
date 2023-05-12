@@ -6,14 +6,12 @@
     <span class="text-3xl font-semibold font-Anonymous-Pro flex gap-2">
       <span>{{ currentPageNum }}</span>
       <span>/</span>
-      <span>{{ ALL_PAGES_NUM }}</span>
+      <span>4</span>
     </span>
   </header>
 </template>
 
 <script setup>
-const ALL_PAGES_NUM = 4;
-
 defineProps({
   currentPageNum: {
     type: String,

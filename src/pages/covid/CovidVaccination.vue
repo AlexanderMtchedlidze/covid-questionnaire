@@ -2,8 +2,8 @@
   <base-wrapper image-file-name="doctor.png" page-num="3">
     <div class="flex flex-col gap-10">
       <div>
-        <radio-label>უკვე აცრილი ხარ?*</radio-label>
-        <form-radio
+        <group-label>უკვე აცრილი ხარ?*</group-label>
+        <radio-input
           v-for="op in vaccinatedOptions"
           :id="op.id"
           :key="op.id"
@@ -15,8 +15,8 @@
         <ErrorMessage name="vaccinated" />
       </div>
       <div v-if="isVaccinated">
-        <radio-label>აირჩიე რა ეტაპზე ხარ*</radio-label>
-        <form-radio
+        <group-label>აირჩიე რა ეტაპზე ხარ*</group-label>
+        <radio-input
           v-for="op in stageOptions"
           :id="op.value"
           :key="op.value"
@@ -27,8 +27,8 @@
         />
       </div>
       <div v-else-if="isNotVaccinated">
-        <radio-label>რას ელოდები?*</radio-label>
-        <form-radio
+        <group-label>რას ელოდები?*</group-label>
+        <radio-input
           v-for="op in waitingForOptions"
           :id="op.value"
           :key="op.value"

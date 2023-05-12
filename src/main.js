@@ -4,17 +4,17 @@ import App from "./App.vue";
 import router from "./router.js";
 import store from "./store/index.js";
 import { defineAsyncComponent } from "vue";
-const FormInput = defineAsyncComponent(() =>
-  import("./components/form/FormInput.vue")
+const TextInput = defineAsyncComponent(() =>
+  import("./components/form/TextInput.vue")
 );
 const InputLabel = defineAsyncComponent(() =>
   import("./components/form/InputLabel.vue")
 );
-const FormRadio = defineAsyncComponent(() =>
-  import("./components/form/radio/FormRadio.vue")
+const RadioInput = defineAsyncComponent(() =>
+  import("./components/form/radio/RadioInput.vue")
 );
-const RadioLabel = defineAsyncComponent(() =>
-  import("./components/form/radio/RadioLabel.vue")
+const GroupLabel = defineAsyncComponent(() =>
+  import("./components/form/GroupLabel.vue")
 );
 const NavigationWrapper = defineAsyncComponent(() =>
   import("./components/layout/nav/NavigationWrapper.vue")
@@ -31,14 +31,14 @@ const BaseWrapper = defineAsyncComponent(() =>
 
 const app = createApp(App);
 
-app.component("FormInput", FormInput);
+app.component("TextInput", TextInput);
+app.component("GroupLabel", GroupLabel);
 app.component("NavWrapper", NavigationWrapper);
 app.component("ForwardNav", ForwardNavigation);
 app.component("BackwardNav", BackwardNavigation);
 app.component("InputLabel", InputLabel);
-app.component("FormRadio", FormRadio);
+app.component("RadioInput", RadioInput);
 app.component("BaseWrapper", BaseWrapper);
-app.component("RadioLabel", RadioLabel);
 
 app.use(router);
 

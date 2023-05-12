@@ -30,7 +30,7 @@ defineRule("date_format", (value) => {
   }
 
   if (year < 19 || year > 23) {
-    return "თვის მნიშვნელობა უნდა იყოს 19-23 შუალედში";
+    return "წლის მნიშვნელობა უნდა იყოს 19-23 შუალედში";
   }
 
   return true;

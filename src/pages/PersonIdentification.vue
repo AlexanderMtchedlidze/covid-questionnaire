@@ -1,28 +1,25 @@
 <template>
   <base-wrapper image-file-name="identification.png" page-num="1">
     <div class="flex flex-col gap-8">
-      <form-input
+      <text-input
         name="name"
-        label="სახელი"
+        label="სახელი*"
         placeholder="იოსებ"
         :rules="nameRules"
-      >
-      </form-input>
-      <form-input
+      />
+      <text-input
         name="surname"
-        label="გვარი"
+        label="გვარი*"
         placeholder="ჯუღაშვილი"
         :rules="nameRules"
-      >
-      </form-input>
-      <form-input
+      />
+      <text-input
         name="mail"
-        label="მეილი"
+        label="მეილი*"
         type="email"
         placeholder="fbi@redberry.ge"
         rules="required|email|redberryEmail"
-      >
-      </form-input>
+      />
     </div>
     <div class="py-10">
       <img src="/icons/form line.svg" alt="footer line" />

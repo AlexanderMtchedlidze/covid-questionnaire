@@ -2,8 +2,8 @@
   <base-wrapper image-file-name="vaccinate.png" page-num="2">
     <div class="flex flex-col gap-10">
       <div>
-        <radio-label>გაქვს გადატანილი Covid-19?*</radio-label>
-        <form-radio
+        <group-label>გაქვს გადატანილი Covid-19?*</group-label>
+        <radio-input
           v-for="op in hadCovidOptions"
           :id="op.id"
           :key="op.id"
@@ -15,28 +15,27 @@
         <ErrorMessage name="had-covid" />
       </div>
       <div v-if="isHavingCovid">
-        <radio-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </radio-label>
-        <form-radio
+        <group-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </group-label>
+        <radio-input
           v-for="op in hadAntibodiesOptions"
           :id="op.id"
           :key="op.id"
-          v-model="hadAntibodies"
-          name="had_antibodies"
+          name="hadAntibodies"
           :value="op.value"
           :label="op.label"
-        ></form-radio>
+        />
       </div>
       <div v-if="isHavingAntibodies">
-        <radio-label>
+        <group-label>
           თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
           რაოდენობა?*
-        </radio-label>
-        <form-input
+        </group-label>
+        <text-input
           name="antibodiesDate"
           rules="required|date_format"
           placeholder="რიცხვი"
         />
-        <form-input
+        <text-input
           name="antibodiesQuantity"
           type="number"
           placeholder="ანტისხეულების რაოდენობა"
@@ -44,10 +43,10 @@
         />
       </div>
       <div v-if="isNotHavingAntibodies">
-        <radio-label>
+        <group-label>
           მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*
-        </radio-label>
-        <form-input
+        </group-label>
+        <text-input
           name="covidDate"
           rules="required|date_format"
           placeholder="დდ/თთ/წწ"
@@ -94,11 +93,11 @@ const isNotHavingAntibodies = computed(
 );
 
 const hadCovid = ref(store.getters.hadCovid);
-watch(hadCovid, (newVal) => {
+watch(hadCovid, (value) => {
   store.dispatch({
     type: "setInputValue",
     name: "hadCovid",
-    value: newVal,
+    value,
   });
 });
 

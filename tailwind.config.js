@@ -14,6 +14,7 @@ export default {
         "dark-gray": "#232323",
         invalid: "#F15524",
         "dark-cyan": "#1289AE",
+        "light-cyan": "#59acc6",
       },
     },
   },

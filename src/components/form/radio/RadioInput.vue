@@ -1,14 +1,20 @@
 <template>
   <div class="flex items-center gap-5 mb-2">
-    <Field :id="id" :name="name" type="radio" :value="value" @click="setValue(value)" />
-    <input-label :for="id" :asterisk="false">{{ label }}</input-label>
+    <Field
+      :id="id"
+      :name="name"
+      type="radio"
+      :value="value"
+      @click="setValue"
+    />
+    <input-label :for="id">{{ label }}</input-label>
   </div>
 </template>
 
 <script setup>
 import { Field } from "vee-validate";
 const emit = defineEmits(["update:modelValue"]);
-defineProps({
+const props = defineProps({
   name: {
     required: true,
     type: String,
@@ -24,7 +30,7 @@ defineProps({
   value: { required: true, type: String },
 });
 
-function setValue(val) {
-  emit("update:modelValue", val);
+function setValue() {
+  emit("update:modelValue", props.value);
 }
 </script>
