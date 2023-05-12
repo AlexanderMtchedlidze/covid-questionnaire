@@ -42,14 +42,11 @@
 
 <script setup>
 import { computed, ref, watch } from "vue";
-import { useStore } from "vuex";
 import { useForm } from "vee-validate";
 
-const store = useStore();
-const minValue = store.getters["validation/minValue"];
 const nameRules = computed(() => ({
   required: true,
-  min: minValue,
+  min: 2,
 }));
 
 const { meta } = useForm();

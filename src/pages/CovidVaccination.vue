@@ -4,67 +4,38 @@
       <div>
         <radio-label>უკვე აცრილი ხარ?*</radio-label>
         <form-radio
-          id="vaccinated_yes"
+          v-for="op in vaccinatedOptions"
+          :id="op.id"
+          :key="op.id"
           v-model="vaccinated"
           name="vaccinated"
-          value="yes"
-          label="კი"
-        />
-        <form-radio
-          id="vaccinated_no"
-          v-model="vaccinated"
-          name="vaccinated"
-          value="no"
-          label="არა"
+          :value="op.value"
+          :label="op.label"
         />
         <ErrorMessage name="vaccinated" />
       </div>
       <div v-if="isVaccinated">
         <radio-label>აირჩიე რა ეტაპზე ხარ*</radio-label>
         <form-radio
-          id="first_dose_and_registered"
+          v-for="op in stageOptions"
+          :id="op.value"
+          :key="op.value"
           v-model="stage"
           name="stage"
-          value="first_dose_and_registered"
-          label="პირველი დოზა და დარეგისტრირებული ვარ მეორეზე"
-        />
-        <form-radio
-          id="fully_vaccinated"
-          v-model="stage"
-          name="stage"
-          value="fully_vaccinated"
-          label="სრულად აცრილი ვარ"
-        />
-        <form-radio
-          id="first_dose_and_not_registered"
-          v-model="stage"
-          name="stage"
-          value="first_dose_and_not_registered"
-          label="პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე"
+          :value="op.value"
+          :label="op.label"
         />
       </div>
       <div v-else-if="isNotVaccinated">
         <radio-label>რას ელოდები?*</radio-label>
         <form-radio
-          id="registered_and_waiting"
+          v-for="op in waitingForOptions"
+          :id="op.value"
+          :key="op.value"
           v-model="waitingFor"
           name="waitingFor"
-          value="registered_and_waiting"
-          label="დარეგისტრირებული ვარ და ველოდები რიცხვს"
-        />
-        <form-radio
-          id="not_planning"
-          v-model="waitingFor"
-          name="waitingFor"
-          value="not_planning"
-          label="არ ვგეგმავ"
-        />
-        <form-radio
-          id="recovered_and_planning"
-          v-model="waitingFor"
-          name="waitingFor"
-          value="recovered_and_planning"
-          label="გადატანილი მაქვს და ვგეგმავ აცრას"
+          :value="op.value"
+          :label="op.label"
         />
       </div>
       <div v-if="vaccinatedAndNotRegistered" class="text-lg">
@@ -84,7 +55,9 @@
 
         <p class="mt-3">
           👉 რეგისტრაციის ბმული <br />
-          <a href="https://booking.moh.gov.ge/" class="text-dark-cyan">https://booking.moh.gov.ge/</a>
+          <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
+            >https://booking.moh.gov.ge/</a
+          >
         </p>
       </div>
     </div>
@@ -104,6 +77,10 @@ import { useForm, ErrorMessage } from "vee-validate";
 import { useStore } from "vuex";
 
 const store = useStore();
+
+const vaccinatedOptions = store.getters.vaccinatedOptions;
+const stageOptions = store.getters.stageOptions;
+const waitingForOptions = store.getters.waitingForOptions;
 
 const { meta } = useForm();
 
@@ -150,7 +127,8 @@ const isNotVaccinated = computed(() => {
 const waitingFor = ref(store.getters.waitingFor);
 
 const notVaccinatedAndPlanningRegistering = computed(
-  () => vaccinated.value === "no" && waitingFor.value === "recovered_and_planning"
+  () =>
+    vaccinated.value === "no" && waitingFor.value === "recovered_and_planning"
 );
 
 watch(waitingFor, (value) => {
