@@ -64,7 +64,7 @@
     <nav-wrapper>
       <backward-nav to="/condition"></backward-nav>
       <forward-nav
-        to="/tips"
+        to="/politics"
         :should-allow-forward="shouldAllowForward"
       ></forward-nav>
     </nav-wrapper>
@@ -84,10 +84,10 @@ const waitingForOptions = store.getters.waitingForOptions;
 
 const { meta } = useForm();
 
-const shouldAllowForward = ref(store.getters.isVaccinationPageCompleted);
+const shouldAllowForward = ref(!!store.getters.isVaccinationPageCompleted);
 
 watch(meta, () => {
-  shouldAllowForward.value = store.getters.isVaccinationPageCompleted;
+  shouldAllowForward.value = !!store.getters.isVaccinationPageCompleted;
 });
 
 const vaccinated = ref(store.getters.vaccinated);

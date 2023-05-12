@@ -4,43 +4,26 @@
       <div>
         <radio-label>გაქვს გადატანილი Covid-19?*</radio-label>
         <form-radio
-          id="had_covid_yes"
+          v-for="op in hadCovidOptions"
+          :id="op.id"
+          :key="op.id"
           v-model="hadCovid"
-          name="had_covid"
-          value="yes"
-          label="კი"
-        />
-        <form-radio
-          id="had_covid_no"
-          v-model="hadCovid"
-          name="had_covid"
-          value="no"
-          label="არა"
-        />
-        <form-radio
-          id="had_covid_now"
-          v-model="hadCovid"
-          name="had_covid"
-          value="now"
-          label="ახლა მაქვს"
+          name="hadCovid"
+          :value="op.value"
+          :label="op.label"
         />
         <ErrorMessage name="had-covid" />
       </div>
       <div v-if="isHavingCovid">
         <radio-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </radio-label>
         <form-radio
-          id="had_antibodies_yes"
+          v-for="op in hadAntibodiesOptions"
+          :id="op.id"
+          :key="op.id"
           v-model="hadAntibodies"
           name="had_antibodies"
-          value="yes"
-          label="კი"
-        ></form-radio>
-        <form-radio
-          id="had_antibodies_no"
-          v-model="hadAntibodies"
-          name="had_antibodies"
-          value="no"
-          label="არა"
+          :value="op.value"
+          :label="op.label"
         ></form-radio>
       </div>
       <div v-if="isHavingAntibodies">
@@ -88,15 +71,20 @@ import { useStore } from "vuex";
 
 const store = useStore();
 
+const hadCovidOptions = store.getters.hadCovidOptions;
+const hadAntibodiesOptions = store.getters.hadAntibodiesOptions;
+
 const { meta } = useForm();
 
+console.log(!!store.getters.isConditionPageCompleted);
+
 const shouldAllowForward = ref(
-  meta.value.valid && store.getters.isConditionPageCompleted
+  meta.value.valid && !!store.getters.isConditionPageCompleted
 );
 
 watch(meta, (newVal) => {
   shouldAllowForward.value =
-    newVal.valid && store.getters.isConditionPageCompleted;
+    newVal.valid && !!store.getters.isConditionPageCompleted;
 });
 
 const isHavingCovid = computed(() => hadCovid.value === "yes");
