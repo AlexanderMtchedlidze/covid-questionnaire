@@ -1,10 +1,10 @@
 <template>
   <div class="mx-44 py-10 h-screen">
-    <header>
-      <the-header :current-page-num="pageNum"></the-header>
-    </header>
-    <main class="flex justify-between gap-24">
-      <div class="flex-1 pt-12 pb-4">
+    <div class="sticky top-0 z-10">
+      <the-header :current-page-num="pageNum" />
+    </div>
+    <main class="flex justify-between gap-24 pt-12">
+      <div class="flex-1 pb-4">
         <slot></slot>
       </div>
       <div class="w-1/2">
