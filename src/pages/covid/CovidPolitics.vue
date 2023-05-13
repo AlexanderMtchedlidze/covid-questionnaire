@@ -70,10 +70,17 @@ import FormTextarea from "../../components/form/textarea/FormTextarea.vue";
 import EndingButton from "../../components/layout/nav/EndingButton.vue";
 import { ref, watch } from "vue";
 import { useStore } from "vuex";
+import { useForm } from "vee-validate";
 
 const store = useStore();
 
 const shouldAllowForward = ref(store.getters.isPoliticsPageCompleted);
+
+const { meta } = useForm();
+
+watch(meta, () => {
+  shouldAllowForward.value = store.getters.isPoliticsPageCompleted;
+});
 
 const meetingDays = store.getters.meetingDays;
 
@@ -82,7 +89,6 @@ const officeWorkingDays = store.getters.officeWorkingDays;
 const non_formal_meetings = ref(store.getters.non_formal_meetings);
 
 watch(non_formal_meetings, (value) => {
-  shouldAllowForward.value = store.getters.isPoliticsPageCompleted;
   store.dispatch("setInputValue", {
     name: "non_formal_meetings",
     value,
@@ -94,7 +100,6 @@ const number_of_days_from_office = ref(
 );
 
 watch(number_of_days_from_office, (value) => {
-  shouldAllowForward.value = store.getters.isPoliticsPageCompleted;
   store.dispatch("setInputValue", {
     name: "number_of_days_from_office",
     value,

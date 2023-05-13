@@ -28,7 +28,7 @@
       <div v-else-if="isNotVaccinated">
         <group-label>რას ელოდები?*</group-label>
         <radio-input
-          v-for="op in iAmWaitingFor"
+          v-for="op in iAmWaitingForOptions"
           :id="op.value"
           :key="op.id"
           v-model="i_am_waiting"
@@ -79,7 +79,7 @@ const store = useStore();
 
 const hadVaccineOptions = store.getters.hadVaccineOptions;
 const vaccinationStageOptions = store.getters.vaccinationStageOptions;
-const iAmWaitingFor = store.getters.iAmWaitingFor;
+const iAmWaitingForOptions = store.getters.iAmWaitingForOptions;
 
 const { meta } = useForm();
 

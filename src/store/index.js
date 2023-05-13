@@ -4,6 +4,8 @@ import identificationModule from "./modules/identification/index.js";
 import conditionModule from "./modules/condition/index.js";
 import vaccinationModule from "./modules/vaccination/index.js";
 import politicsModule from "./modules/politics/index.js";
+import actions from "./actions.js";
+import getters from "./getters.js";
 
 const store = createStore({
   modules: {
@@ -12,12 +14,8 @@ const store = createStore({
     vaccination: vaccinationModule,
     politics: politicsModule,
   },
-  actions: {
-    setInputValue(context, payload) {
-      context.commit("setInputValue", payload);
-      localStorage.setItem(payload.name, payload.value);
-    },
-  },
+  actions,
+  getters,
   mutations: {
     setInputValue(state, payload) {
       state[payload.name] = payload.value;

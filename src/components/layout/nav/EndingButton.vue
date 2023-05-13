@@ -1,5 +1,5 @@
 <template>
-  <router-link v-if="shouldAllowForward" to="/thanks" :class="buttonClass">
+  <router-link v-if="shouldAllowForward" to="/thank-you" :class="buttonClass">
     დასრულება
   </router-link>
   <button v-else :class="buttonClass" class="button__inactive">

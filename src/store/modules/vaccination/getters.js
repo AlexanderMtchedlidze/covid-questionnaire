@@ -3,7 +3,7 @@ const getValue = (state, key) => state[key] || localStorage.getItem(key);
 export default {
   isVaccinationPageCompleted: (_, getters) =>
     (getters.had_vaccine && getters.vaccination_stage) ||
-    (getters.had_vaccine && getters.i_am_waiting),
+    (getters.had_vaccine === false && getters.i_am_waiting),
   hadVaccineOptions: () => [
     { label: "კი", value: true, id: "had_vaccine_yes" },
     { label: "არა", value: false, id: "had_vaccine_no" },
@@ -19,7 +19,7 @@ export default {
       value: "first_dosage_and_not_registered_yet",
     },
   ],
-  iAmWaitingFor: () => [
+  iAmWaitingForOptions: () => [
     {
       label: "დარეგისტრირებული ვარ და ველოდები რიცხვს",
       value: "registered_and_waiting",

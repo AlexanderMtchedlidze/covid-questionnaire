@@ -32,9 +32,6 @@ const router = createRouter({
       path: "/thank-you",
       component: ThankYou,
     },
-    {
-      path: "/:notFound(.*)",
-    },
   ],
   history: createWebHistory(),
 });

@@ -35,6 +35,11 @@
 
 <script setup>
 import { ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+store.dispatch("sendAllGatheredData");
 
 const bigSparkle = ref(null);
 const smallSparkle = ref(null);
@@ -51,7 +56,7 @@ const startSparkleAnimation = () => {
 }
 
 .sparkle-enter-active {
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .sparkle-enter-to {
