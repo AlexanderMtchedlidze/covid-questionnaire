@@ -1,45 +1,36 @@
 const getValue = (state, key) => state[key] || localStorage.getItem(key);
 
 export default {
-  vaccinatedOptions() {
-    return [
-      { label: "არა", value: "false", id: "vaccinated_no" },
-      { label: "კი", value: "true", id: "vaccinated_yes" },
-    ];
-  },
-  stageOptions() {
-    return [
-      {
-        label: "პირველი დოზა და დარეგისტრირებული ვარ მეორეზე",
-        value: "first_dose_and_registered",
-      },
-      { label: "სრულად აცრილი ვარ", value: "fully_vaccinated" },
-      {
-        label: "პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე",
-        value: "first_dose_and_not_registered",
-      },
-    ];
-  },
-  waitingForOptions() {
-    return [
-      {
-        label: "დარეგისტრირებული ვარ და ველოდები რიცხვს",
-        value: "registered_and_waiting",
-      },
-      { label: "არ ვგეგმავ", value: "not_planning" },
-      {
-        label: "გადატანილი მაქვს და ვგეგმავ აცრას",
-        value: "recovered_and_planning",
-      },
-    ];
-  },
-  isVaccinationPageCompleted(_, getters) {
-    return (
-      (getters.vaccinated === "yes" && getters.stage) ||
-      (getters.vaccinated === "no" && getters.waitingFor)
-    );
-  },
-  vaccinated: (state) => getValue(state, "vaccinated"),
-  stage: (state) => getValue(state, "stage"),
-  waitingFor: (state) => getValue(state, "waitingFor"),
+  isVaccinationPageCompleted: (_, getters) =>
+    (getters.had_vaccine && getters.vaccination_stage) ||
+    (getters.had_vaccine && getters.i_am_waiting),
+  hadVaccineOptions: () => [
+    { label: "კი", value: true, id: "had_vaccine_yes" },
+    { label: "არა", value: false, id: "had_vaccine_no" },
+  ],
+  vaccinationStageOptions: () => [
+    {
+      label: "პირველი დოზა და დარეგისტრირებული ვარ მეორეზე",
+      value: "first_dosage_and_registered_on_the_second",
+    },
+    { label: "სრულად აცრილი ვარ", value: "fully_vaccinated" },
+    {
+      label: "პირველი დოზა და არ დავრეგისტრირებულვარ მეორეზე",
+      value: "first_dosage_and_not_registered_yet",
+    },
+  ],
+  iAmWaitingFor: () => [
+    {
+      label: "დარეგისტრირებული ვარ და ველოდები რიცხვს",
+      value: "registered_and_waiting",
+    },
+    { label: "არ ვგეგმავ", value: "not_planning" },
+    {
+      label: "გადატანილი მაქვს და ვგეგმავ აცრას",
+      value: "had_covid_and_planning_to_be_vaccinated",
+    },
+  ],
+  had_vaccine: (state) => JSON.parse(getValue(state, "had_vaccine")),
+  vaccination_stage: (state) => getValue(state, "vaccination_stage"),
+  i_am_waiting: (state) => getValue(state, "i_am_waiting"),
 };

@@ -9,8 +9,8 @@ export default {
     };
   },
   getters: {
-    name: (state) => getValue(state, "name"),
-    surname: (state) => getValue(state, "surname"),
-    mail: (state) => getValue(state, "mail"),
+    first_name: (state) => getValue(state, "first_name"),
+    last_name: (state) => getValue(state, "last_name"),
+    email: (state) => getValue(state, "email"),
   },
 };

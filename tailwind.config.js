@@ -17,10 +17,9 @@ export default {
         "light-cyan": "#59acc6",
       },
       keyframes: {
-        "appear-from-left": {
-          "0%": { transform: "translateX(-100%)", opacity: "0" },
-          "50%": { transform: "translateX(0)", opacity: "0.5" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
+        appear: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
         "logo-appear": {
           "0%": { transform: "scale(20)" },
@@ -28,8 +27,8 @@ export default {
         },
       },
       animation: {
-        "appear-from-left": "appear-from-left 1s ease-in",
-        "logo-appear": "logo-appear .5s ease-in"
+        appear: "appear .5s ease-in",
+        "logo-appear": "logo-appear .5s ease-in",
       },
     },
   },

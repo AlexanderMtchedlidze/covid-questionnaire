@@ -40,9 +40,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  // eslint-disable-next-line vue/require-default-prop
   rules: {
     type: [String, Object],
-    required: true,
+    required: false,
   },
 });
 const value = ref(store.getters[props.name]);

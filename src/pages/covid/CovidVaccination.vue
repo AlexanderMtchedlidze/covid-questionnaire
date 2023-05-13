@@ -4,24 +4,23 @@
       <div>
         <group-label>უკვე აცრილი ხარ?*</group-label>
         <radio-input
-          v-for="op in vaccinatedOptions"
+          v-for="op in hadVaccineOptions"
           :id="op.id"
           :key="op.id"
-          v-model="vaccinated"
-          name="vaccinated"
+          v-model="had_vaccine"
+          name="had_vaccine"
           :value="op.value"
           :label="op.label"
         />
-        <ErrorMessage name="vaccinated" />
       </div>
       <div v-if="isVaccinated">
         <group-label>აირჩიე რა ეტაპზე ხარ*</group-label>
         <radio-input
-          v-for="op in stageOptions"
+          v-for="op in vaccinationStageOptions"
           :id="op.value"
-          :key="op.value"
-          v-model="stage"
-          name="stage"
+          :key="op.id"
+          v-model="vaccination_stage"
+          name="vaccination_stage"
           :value="op.value"
           :label="op.label"
         />
@@ -29,16 +28,16 @@
       <div v-else-if="isNotVaccinated">
         <group-label>რას ელოდები?*</group-label>
         <radio-input
-          v-for="op in waitingForOptions"
+          v-for="op in iAmWaitingFor"
           :id="op.value"
-          :key="op.value"
-          v-model="waitingFor"
-          name="waitingFor"
+          :key="op.id"
+          v-model="i_am_waiting"
+          name="i_am_waiting"
           :value="op.value"
           :label="op.label"
         />
       </div>
-      <div v-if="vaccinatedAndNotRegistered" class="text-lg">
+      <div v-if="vaccinatedAndNotRegisteredOnTheSecond" class="text-lg">
         <p>
           რომ არ გადადო, <br />
           ბარემ ახლავე დარეგისტრირდი
@@ -47,7 +46,7 @@
           </a>
         </p>
       </div>
-      <div v-else-if="notVaccinatedAndPlanningRegistering" class="text-lg">
+      <div v-else-if="notVaccinatedAndNotRegistered" class="text-lg">
         <p>
           ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ ვაქცინის
           გაკეთება.
@@ -73,14 +72,14 @@
 
 <script setup>
 import { ref, watch, computed } from "vue";
-import { useForm, ErrorMessage } from "vee-validate";
+import { useForm } from "vee-validate";
 import { useStore } from "vuex";
 
 const store = useStore();
 
-const vaccinatedOptions = store.getters.vaccinatedOptions;
-const stageOptions = store.getters.stageOptions;
-const waitingForOptions = store.getters.waitingForOptions;
+const hadVaccineOptions = store.getters.hadVaccineOptions;
+const vaccinationStageOptions = store.getters.vaccinationStageOptions;
+const iAmWaitingFor = store.getters.iAmWaitingFor;
 
 const { meta } = useForm();
 
@@ -90,52 +89,49 @@ watch(meta, () => {
   shouldAllowForward.value = !!store.getters.isVaccinationPageCompleted;
 });
 
-const vaccinated = ref(store.getters.vaccinated);
+const had_vaccine = ref(store.getters.had_vaccine);
 
-watch(vaccinated, (value) => {
+watch(had_vaccine, (value) => {
   store.dispatch({
     type: "setInputValue",
-    name: "vaccinated",
+    name: "had_vaccine",
     value,
   });
 });
 
-const stage = ref(store.getters.stage);
+const vaccination_stage = ref(store.getters.vaccination_stage);
 
-const vaccinatedAndNotRegistered = computed(
+watch(vaccination_stage, (value) => {
+  store.dispatch({
+    type: "setInputValue",
+    name: "vaccination_stage",
+    value,
+  });
+});
+
+const vaccinatedAndNotRegisteredOnTheSecond = computed(
   () =>
-    vaccinated.value === "yes" &&
-    stage.value === "first_dose_and_not_registered"
+    had_vaccine.value &&
+    vaccination_stage.value === "first_dosage_and_not_registered_yet"
 );
 
-watch(stage, (value) => {
+const isVaccinated = computed(() => had_vaccine.value === true);
+
+const isNotVaccinated = computed(() => had_vaccine.value === false);
+
+const i_am_waiting = ref(store.getters.i_am_waiting);
+
+watch(i_am_waiting, (value) => {
   store.dispatch({
     type: "setInputValue",
-    name: "stage",
+    name: "i_am_waiting",
     value,
   });
 });
 
-const isVaccinated = computed(() => {
-  return vaccinated.value === "yes";
-});
-
-const isNotVaccinated = computed(() => {
-  return vaccinated.value === "no";
-});
-
-const waitingFor = ref(store.getters.waitingFor);
-
-const notVaccinatedAndPlanningRegistering = computed(
+const notVaccinatedAndNotRegistered = computed(
   () =>
-    vaccinated.value === "no" && waitingFor.value === "recovered_and_planning"
+    had_vaccine.value === false &&
+    i_am_waiting.value === "had_covid_and_planning_to_be_vaccinated"
 );
-
-watch(waitingFor, (value) => {
-  store.dispatch({
-    type: "setInputValue",
-    name: "waitingFor",
-    value,
-  });
-});
 </script>

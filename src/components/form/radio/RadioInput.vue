@@ -27,7 +27,7 @@ const props = defineProps({
     required: true,
     type: String,
   },
-  value: { required: true, type: String },
+  value: { required: true, type: [String, Boolean] },
 });
 
 function setValue() {

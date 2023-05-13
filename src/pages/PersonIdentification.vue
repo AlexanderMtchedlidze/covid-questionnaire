@@ -2,19 +2,19 @@
   <base-wrapper image-file-name="identification.png" page-num="1">
     <div class="flex flex-col gap-8">
       <text-input
-        name="name"
+        name="first_name"
         label="სახელი*"
         placeholder="იოსებ"
         :rules="nameRules"
       />
       <text-input
-        name="surname"
+        name="last_name"
         label="გვარი*"
         placeholder="ჯუღაშვილი"
         :rules="nameRules"
       />
       <text-input
-        name="mail"
+        name="email"
         label="მეილი*"
         type="email"
         placeholder="fbi@redberry.ge"

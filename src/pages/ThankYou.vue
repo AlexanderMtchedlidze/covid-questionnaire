@@ -14,7 +14,7 @@
     </transition>
     <div>
       <p
-        class="font-bold text-6xl tracking-widest text-white animate-appear-from-left"
+        class="font-bold text-6xl tracking-widest text-white animate-appear"
         @animationend="startSparkleAnimation"
       >
         მადლობა

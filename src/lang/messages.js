@@ -3,12 +3,13 @@ import { localize } from "@vee-validate/i18n";
 export default {
   generateMessage: localize("ka", {
     names: {
-      name: "სახელის ველი",
-      surname: "გვარის ველი",
-      mail: "მეილის ველი",
+      first_name: "სახელის ველი",
+      last_name: "გვარის ველი",
+      email: "მეილის ველი",
       covidDate: "პერიოდი",
       antibodiesDate: 'რიცხვი',
-      antibodiesQuantity: 'ანტისხეულების რაოდენობი'
+      antibodiesQuantity: 'ანტისხეულების რაოდენობი',
+      test_date: 'რიცხვი',
     },
     messages: {
       required: "{field}ს შევსება სავალდებულოა",

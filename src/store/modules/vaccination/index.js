@@ -5,9 +5,9 @@ getters
 export default {
   state() {
     return {
-      vaccinated: null,
-      stage: null,
-      waitingFor: null,
+      had_vaccine: null,
+      vaccination_stage: null,
+      i_am_waiting: null,
     };
   },
   getters

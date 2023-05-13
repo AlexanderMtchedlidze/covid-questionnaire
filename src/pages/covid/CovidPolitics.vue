@@ -22,8 +22,8 @@
           v-for="day in meetingDays"
           :id="day.value"
           :key="day.value"
-          v-model="meetingFrequency"
-          name="meetingFrequency"
+          v-model="non_formal_meetings"
+          name="non_formal_meetings"
           :value="day.value"
           :label="day.label"
         />
@@ -36,25 +36,27 @@
           v-for="day in officeWorkingDays"
           :id="day.value"
           :key="day.value"
-          v-model="officeWorkFrequency"
-          name="officeWorkFrequency"
+          v-model="number_of_days_from_office"
+          name="number_of_days_from_office"
           :value="day.value"
-          :label="day.label"
+          :label="day.value"
         />
       </div>
       <div>
         <group-label> რას ფიქრობ ფიზიკურ შეკრებებზე? </group-label>
-        <FormTextarea name="opinionAboutMeetings" />
+        <FormTextarea name="what_about_meetings_in_live" />
       </div>
       <div>
         <group-label
           >რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას
           შეცვლიდი?
         </group-label>
-        <FormTextarea name="opinionAboutEnvironment" />
+        <FormTextarea name="tell_us_your_opinion_about_us" />
       </div>
       <div class="flex justify-end">
-       <ending-button :should-allow-forward="shouldAllowForward"></ending-button>
+        <ending-button
+          :should-allow-forward="shouldAllowForward"
+        ></ending-button>
       </div>
     </div>
     <nav-wrapper>
@@ -71,28 +73,30 @@ import { useStore } from "vuex";
 
 const store = useStore();
 
-const shouldAllowForward = ref(!!store.getters.isPoliticsPageCompleted);
+const shouldAllowForward = ref(store.getters.isPoliticsPageCompleted);
 
 const meetingDays = store.getters.meetingDays;
 
 const officeWorkingDays = store.getters.officeWorkingDays;
 
-const meetingFrequency = ref(store.getters.meetingFrequency);
+const non_formal_meetings = ref(store.getters.non_formal_meetings);
 
-watch(meetingFrequency, (value) => {
-  shouldAllowForward.value = ref(!!store.getters.isPoliticsPageCompleted);
+watch(non_formal_meetings, (value) => {
+  shouldAllowForward.value = store.getters.isPoliticsPageCompleted;
   store.dispatch("setInputValue", {
-    name: "meetingFrequency",
+    name: "non_formal_meetings",
     value,
   });
 });
 
-const officeWorkFrequency = ref(store.getters.officeWorkFrequency);
+const number_of_days_from_office = ref(
+  store.getters.number_of_days_from_office
+);
 
-watch(officeWorkFrequency, (value) => {
-  shouldAllowForward.value = ref(!!store.getters.isPoliticsPageCompleted);
+watch(number_of_days_from_office, (value) => {
+  shouldAllowForward.value = store.getters.isPoliticsPageCompleted;
   store.dispatch("setInputValue", {
-    name: "officeWorkFrequency",
+    name: "number_of_days_from_office",
     value,
   });
 });

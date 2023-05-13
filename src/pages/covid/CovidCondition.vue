@@ -7,47 +7,42 @@
           v-for="op in hadCovidOptions"
           :id="op.id"
           :key="op.id"
-          v-model="hadCovid"
-          name="hadCovid"
+          v-model="had_covid"
+          name="had_covid"
           :value="op.value"
           :label="op.label"
         />
-        <ErrorMessage name="had-covid" />
       </div>
-      <div v-if="isHavingCovid">
+      <div v-if="hadCovid">
         <group-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </group-label>
         <radio-input
-          v-for="op in hadAntibodiesOptions"
+          v-for="op in hadAntibodyTestOptions"
           :id="op.id"
           :key="op.id"
-          name="hadAntibodies"
+          v-model="had_antibody_test"
+          name="had_antibody_test"
           :value="op.value"
           :label="op.label"
         />
       </div>
-      <div v-if="isHavingAntibodies">
+      <div v-if="hadAntibodyTest">
         <group-label>
           თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
           რაოდენობა?*
         </group-label>
+        <text-input name="test_date" placeholder="რიცხვი" />
         <text-input
-          name="antibodiesDate"
-          rules="required|date_format"
-          placeholder="რიცხვი"
-        />
-        <text-input
-          name="antibodiesQuantity"
+          name="number"
           type="number"
           placeholder="ანტისხეულების რაოდენობა"
-          rules="required"
         />
       </div>
-      <div v-if="isNotHavingAntibodies">
+      <div v-if="didntHaveAntibodyTest">
         <group-label>
           მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*
         </group-label>
         <text-input
-          name="covidDate"
+          name="covid_sickness_date"
           rules="required|date_format"
           placeholder="დდ/თთ/წწ"
         />
@@ -65,13 +60,13 @@
 
 <script setup>
 import { ref, watch, computed } from "vue";
-import { ErrorMessage, useForm } from "vee-validate";
+import { useForm } from "vee-validate";
 import { useStore } from "vuex";
 
 const store = useStore();
 
 const hadCovidOptions = store.getters.hadCovidOptions;
-const hadAntibodiesOptions = store.getters.hadAntibodiesOptions;
+const hadAntibodyTestOptions = store.getters.hadAntibodyTestOptions;
 
 const { meta } = useForm();
 
@@ -84,29 +79,31 @@ watch(meta, (newVal) => {
     newVal.valid && !!store.getters.isConditionPageCompleted;
 });
 
-const isHavingCovid = computed(() => hadCovid.value === "yes");
-const isHavingAntibodies = computed(
-  () => hadCovid.value === "yes" && hadAntibodies.value === "yes"
-);
-const isNotHavingAntibodies = computed(
-  () => hadCovid.value === "yes" && hadAntibodies.value === "no"
-);
-
-const hadCovid = ref(store.getters.hadCovid);
-watch(hadCovid, (value) => {
+const had_covid = ref(store.getters.had_covid);
+watch(had_covid, (value) => {
   store.dispatch({
     type: "setInputValue",
-    name: "hadCovid",
+    name: "had_covid",
     value,
   });
 });
 
-const hadAntibodies = ref(store.getters.hadAntibodies);
-watch(hadAntibodies, (newVal) => {
+const had_antibody_test = ref(store.getters.had_antibody_test);
+watch(had_antibody_test, (newVal) => {
   store.dispatch({
     type: "setInputValue",
-    name: "hadAntibodies",
+    name: "had_antibody_test",
     value: newVal,
   });
 });
+
+const hadCovid = computed(() => had_covid.value === "yes");
+
+const hadAntibodyTest = computed(
+  () => had_covid.value === "yes" && had_antibody_test.value
+);
+const didntHaveAntibodyTest = computed(
+  () =>
+    had_covid.value === "yes" && had_antibody_test.value === false
+);
 </script>
