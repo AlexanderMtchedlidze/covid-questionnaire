@@ -4,6 +4,7 @@ const PersonIdentification = () => import("./pages/PersonIdentification.vue");
 const CovidCondition = () => import("./pages/covid/CovidCondition.vue");
 const CovidVaccination = () => import("./pages/covid/CovidVaccination.vue");
 const CovidPolitics = () => import("./pages/covid/CovidPolitics.vue");
+const ThankYou = () => import("./pages/ThankYou.vue");
 
 const router = createRouter({
   routes: [
@@ -28,11 +29,12 @@ const router = createRouter({
       component: CovidPolitics,
     },
     {
-      path: "/thanks"
+      path: "/thank-you",
+      component: ThankYou,
     },
     {
-      path: "/:notFound(.*)"
-    }
+      path: "/:notFound(.*)",
+    },
   ],
   history: createWebHistory(),
 });

@@ -16,6 +16,16 @@ export default {
         "dark-cyan": "#1289AE",
         "light-cyan": "#59acc6",
       },
+      keyframes: {
+        "appear-from-left": {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "50%": { transform: "translateX(0)", opacity: "0.5" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+      },
+      animation: {
+        "appear-from-left": "appear-from-left 1s ease-in",
+      },
     },
   },
   plugins: [],
