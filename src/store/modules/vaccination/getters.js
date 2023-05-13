@@ -3,8 +3,8 @@ const getValue = (state, key) => state[key] || localStorage.getItem(key);
 export default {
   vaccinatedOptions() {
     return [
-      { label: "არა", value: "no", id: "vaccinated_no" },
-      { label: "კი", value: "yes", id: "vaccinated_yes" },
+      { label: "არა", value: "false", id: "vaccinated_no" },
+      { label: "კი", value: "true", id: "vaccinated_yes" },
     ];
   },
   stageOptions() {

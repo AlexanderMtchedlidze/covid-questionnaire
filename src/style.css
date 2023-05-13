@@ -7,3 +7,9 @@
   font-family: "Arial";
   src: url("./assets/fonts/bpg_arial_2009.ttf");
 }
+
+@layer utilities {
+  .text-shadow-start {
+    text-shadow: #fffff1 2px 1px, #232323 3px 2px;
+  }
+}
