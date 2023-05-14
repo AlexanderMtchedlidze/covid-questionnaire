@@ -4,7 +4,7 @@
     v-model.trim="value"
     :name="name"
     rows="6"
-    class="w-full bg-transparent border border-black"
+    class="w-full bg-transparent border border-black py-2 px-4"
   ></textarea>
 </template>
 

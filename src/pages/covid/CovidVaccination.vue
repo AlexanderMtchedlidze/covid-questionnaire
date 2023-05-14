@@ -1,72 +1,81 @@
 <template>
-  <base-wrapper image-file-name="doctor.png" page-num="3">
-    <div class="flex flex-col gap-10">
-      <div>
-        <group-label>უკვე აცრილი ხარ?*</group-label>
-        <radio-input
-          v-for="op in hadVaccineOptions"
-          :id="op.id"
-          :key="op.id"
-          v-model="had_vaccine"
-          name="had_vaccine"
-          :value="op.value"
-          :label="op.label"
-        />
-      </div>
-      <div v-if="isVaccinated">
-        <group-label>აირჩიე რა ეტაპზე ხარ*</group-label>
-        <radio-input
-          v-for="op in vaccinationStageOptions"
-          :id="op.value"
-          :key="op.id"
-          v-model="vaccination_stage"
-          name="vaccination_stage"
-          :value="op.value"
-          :label="op.label"
-        />
-      </div>
-      <div v-else-if="isNotVaccinated">
-        <group-label>რას ელოდები?*</group-label>
-        <radio-input
-          v-for="op in iAmWaitingForOptions"
-          :id="op.value"
-          :key="op.id"
-          v-model="i_am_waiting"
-          name="i_am_waiting"
-          :value="op.value"
-          :label="op.label"
-        />
-      </div>
-      <div v-if="vaccinatedAndNotRegisteredOnTheSecond" class="text-lg">
-        <p>
-          რომ არ გადადო, <br />
-          ბარემ ახლავე დარეგისტრირდი
-          <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
-            >https://booking.moh.gov.ge/
-          </a>
-        </p>
-      </div>
-      <div v-else-if="notVaccinatedAndNotRegistered" class="text-lg">
-        <p>
-          ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ ვაქცინის
-          გაკეთება.
-        </p>
+  <base-wrapper image-file="/images/vaccination/doctor.png" page-num="3">
+    <template #default>
+      <div class="flex flex-col gap-10">
+        <div>
+          <group-label>უკვე აცრილი ხარ?*</group-label>
+          <radio-input
+            v-for="op in hadVaccineOptions"
+            :id="op.id"
+            :key="op.id"
+            v-model="had_vaccine"
+            name="had_vaccine"
+            :value="op.value"
+            :label="op.label"
+          />
+        </div>
+        <div v-if="isVaccinated">
+          <group-label>აირჩიე რა ეტაპზე ხარ*</group-label>
+          <radio-input
+            v-for="op in vaccinationStageOptions"
+            :id="op.value"
+            :key="op.id"
+            v-model="vaccination_stage"
+            name="vaccination_stage"
+            :value="op.value"
+            :label="op.label"
+          />
+        </div>
+        <div v-else-if="isNotVaccinated">
+          <group-label>რას ელოდები?*</group-label>
+          <radio-input
+            v-for="op in iAmWaitingForOptions"
+            :id="op.value"
+            :key="op.id"
+            v-model="i_am_waiting"
+            name="i_am_waiting"
+            :value="op.value"
+            :label="op.label"
+          />
+        </div>
+        <div v-if="vaccinatedAndNotRegisteredOnTheSecond" class="text-lg">
+          <p>
+            რომ არ გადადო, <br />
+            ბარემ ახლავე დარეგისტრირდი
+            <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
+              >https://booking.moh.gov.ge/
+            </a>
+          </p>
+        </div>
+        <div v-else-if="notVaccinatedAndNotRegistered" class="text-lg">
+          <p>
+            ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
+            ვაქცინის გაკეთება.
+          </p>
 
-        <p class="mt-3">
-          👉 რეგისტრაციის ბმული <br />
-          <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
-            >https://booking.moh.gov.ge/</a
-          >
-        </p>
+          <p class="mt-3">
+            👉 რეგისტრაციის ბმული <br />
+            <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
+              >https://booking.moh.gov.ge/</a
+            >
+          </p>
+        </div>
       </div>
-    </div>
-    <nav-wrapper>
-      <backward-nav to="/condition"></backward-nav>
-      <forward-nav
-        to="/politics"
-        :should-allow-forward="shouldAllowForward"
-      ></forward-nav>
-    </nav-wrapper>
+      <nav-wrapper>
+        <backward-nav to="/condition"></backward-nav>
+        <forward-nav
+          to="/politics"
+          :should-allow-forward="shouldAllowForward"
+        ></forward-nav>
+      </nav-wrapper>
+    </template>
+    <template #secondary-image>
+      <img
+        src="/images/vaccination/vaccination star.png"
+        alt="Red circle secondary image"
+        class="absolute top-40 ml-12 w-44 opacity-70"
+      />
+    </template>
   </base-wrapper>
 </template>
 

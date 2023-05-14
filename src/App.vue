@@ -1,5 +1,9 @@
 <template>
-  <router-view></router-view>
+  <router-view v-slot="{ Component }">
+    <transition>
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script setup>
@@ -18,5 +22,17 @@ configure({
 
 body {
   background-color: #eaeaea;
+}
+
+.v-enter-from {
+  opacity: 0;
+}
+
+.v-enter-active {
+  transition: all .2s ease-out;
+}
+
+.v-enter-to {
+  opacity: 1;
 }
 </style>

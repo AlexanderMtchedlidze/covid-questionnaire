@@ -1,60 +1,69 @@
 <template>
-  <base-wrapper image-file-name="vaccinate.png" page-num="2">
-    <div class="flex flex-col gap-10">
-      <div>
-        <group-label>გაქვს გადატანილი Covid-19?*</group-label>
-        <radio-input
-          v-for="op in hadCovidOptions"
-          :id="op.id"
-          :key="op.id"
-          v-model="had_covid"
-          name="had_covid"
-          :value="op.value"
-          :label="op.label"
-        />
+  <base-wrapper image-file="/images/condition/vaccinate.png" page-num="2">
+    <template #default>
+      <div class="flex flex-col gap-10">
+        <div>
+          <group-label>გაქვს გადატანილი Covid-19?*</group-label>
+          <radio-input
+            v-for="op in hadCovidOptions"
+            :id="op.id"
+            :key="op.id"
+            v-model="had_covid"
+            name="had_covid"
+            :value="op.value"
+            :label="op.label"
+          />
+        </div>
+        <div v-if="hadCovid">
+          <group-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </group-label>
+          <radio-input
+            v-for="op in hadAntibodyTestOptions"
+            :id="op.id"
+            :key="op.id"
+            v-model="had_antibody_test"
+            name="had_antibody_test"
+            :value="op.value"
+            :label="op.label"
+          />
+        </div>
+        <div v-if="hadAntibodyTest">
+          <group-label>
+            თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
+            რაოდენობა?*
+          </group-label>
+          <text-input name="test_date" placeholder="რიცხვი" />
+          <text-input
+            name="number"
+            type="number"
+            placeholder="ანტისხეულების რაოდენობა"
+          />
+        </div>
+        <div v-if="didntHaveAntibodyTest">
+          <group-label>
+            მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*
+          </group-label>
+          <text-input
+            name="covid_sickness_date"
+            rules="required|date_format"
+            placeholder="დდ/თთ/წწ"
+          />
+        </div>
       </div>
-      <div v-if="hadCovid">
-        <group-label> ანტისხეულების ტესტი გაქვს გაკეთებული?* </group-label>
-        <radio-input
-          v-for="op in hadAntibodyTestOptions"
-          :id="op.id"
-          :key="op.id"
-          v-model="had_antibody_test"
-          name="had_antibody_test"
-          :value="op.value"
-          :label="op.label"
-        />
-      </div>
-      <div v-if="hadAntibodyTest">
-        <group-label>
-          თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
-          რაოდენობა?*
-        </group-label>
-        <text-input name="test_date" placeholder="რიცხვი" />
-        <text-input
-          name="number"
-          type="number"
-          placeholder="ანტისხეულების რაოდენობა"
-        />
-      </div>
-      <div v-if="didntHaveAntibodyTest">
-        <group-label>
-          მიუთითე მიახლოებითი პერიოდი (დღე/თვე/წელი) როდის გქონდა Covid-19*
-        </group-label>
-        <text-input
-          name="covid_sickness_date"
-          rules="required|date_format"
-          placeholder="დდ/თთ/წწ"
-        />
-      </div>
-    </div>
-    <nav-wrapper>
-      <backward-nav to="/identification"></backward-nav>
-      <forward-nav
-        to="/vaccination"
-        :should-allow-forward="shouldAllowForward"
-      ></forward-nav>
-    </nav-wrapper>
+      <nav-wrapper>
+        <backward-nav to="/identification"></backward-nav>
+        <forward-nav
+          to="/vaccination"
+          :should-allow-forward="shouldAllowForward"
+        ></forward-nav>
+      </nav-wrapper>
+    </template>
+    <template #secondary-image>
+      <img
+        src="/images/condition/condition circle.png"
+        alt="Red circle secondary image"
+        class="absolute top-80 ml-12 w-44 opacity-70"
+      />
+    </template>
   </base-wrapper>
 </template>
 
@@ -103,7 +112,6 @@ const hadAntibodyTest = computed(
   () => had_covid.value === "yes" && had_antibody_test.value
 );
 const didntHaveAntibodyTest = computed(
-  () =>
-    had_covid.value === "yes" && had_antibody_test.value === false
+  () => had_covid.value === "yes" && had_antibody_test.value === false
 );
 </script>

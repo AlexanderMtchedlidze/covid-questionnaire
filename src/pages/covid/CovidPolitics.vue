@@ -1,5 +1,7 @@
 <template>
-  <base-wrapper image-file-name="bike.png" page-num="4">
+  <base-wrapper image-file="/images/politics/bike.png" page-num="4">
+  <template #default>
+
     <div class="flex flex-col gap-10">
       <div>
         <p>
@@ -62,6 +64,14 @@
     <nav-wrapper>
       <backward-nav to="/vaccination"></backward-nav>
     </nav-wrapper>
+  </template>
+  <template #secondary-image>
+    <img
+        src="/images/politics/politics heart.png"
+        alt="Red circle secondary image"
+        class="absolute top-56 ml-20 w-44 opacity-70"
+      />
+  </template>
   </base-wrapper>
 </template>
 

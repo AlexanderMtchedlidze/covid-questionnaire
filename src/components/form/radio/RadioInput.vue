@@ -5,6 +5,7 @@
       :name="name"
       type="radio"
       :value="value"
+      class="accent-dark-gray"
       @click="setValue"
     />
     <input-label :for="id">{{ label }}</input-label>

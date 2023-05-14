@@ -7,21 +7,23 @@
       <div class="flex-1 pb-4">
         <slot></slot>
       </div>
-      <div class="w-1/2">
+      <div class="w-1/2 h-12">
         <img
-          :src="imageSrcPath"
+          :src="imageFile"
           alt="Image related to the left placed form content"
+          class="max-w-[600px]"
         />
+        <slot name="secondary-image"> </slot>
       </div>
     </main>
   </div>
 </template>
 
 <script setup>
-import { computed, defineAsyncComponent } from "vue";
+import { defineAsyncComponent } from "vue";
 const TheHeader = defineAsyncComponent(() => import("../layout/TheHeader.vue"));
-const props = defineProps({
-  imageFileName: {
+defineProps({
+  imageFile: {
     type: String,
     required: true,
   },
@@ -30,7 +32,4 @@ const props = defineProps({
     required: true,
   },
 });
-const imageSrcPath = computed(
-  () => new URL("/images/" + props.imageFileName, import.meta.url)
-);
 </script>
