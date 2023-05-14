@@ -58,11 +58,13 @@
       </nav-wrapper>
     </template>
     <template #secondary-image>
-      <img
-        src="/images/condition/condition circle.png"
-        alt="Red circle secondary image"
-        class="absolute top-80 ml-12 w-44 opacity-70"
-      />
+      <transition name="condition" appear mode="in-out">
+        <img
+          src="/images/condition/condition circle.png"
+          alt="Red circle secondary image"
+          class="absolute top-80 w-44 ml-12 z-[-1]"
+        />
+      </transition>
     </template>
   </base-wrapper>
 </template>
@@ -115,3 +117,26 @@ const didntHaveAntibodyTest = computed(
   () => had_covid.value === "yes" && had_antibody_test.value === false
 );
 </script>
+
+<style scoped>
+.condition-enter-from {
+  width: 600px;
+  height: 80px;
+  top: 300px;
+  margin-right: 200px;
+  clip-path: inset(20%);
+  transform: translateX(-70px);
+}
+
+.condition-enter-active {
+  transition: all .3s;
+}
+
+.condition-enter-to {
+  clip-path: inset(0);
+  width: 176px;
+  height: 176px;
+  margin-left: 48px;
+  top: 320px;
+}
+</style>

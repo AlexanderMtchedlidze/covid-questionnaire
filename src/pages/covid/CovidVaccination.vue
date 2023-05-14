@@ -70,11 +70,13 @@
       </nav-wrapper>
     </template>
     <template #secondary-image>
-      <img
-        src="/images/vaccination/vaccination star.png"
-        alt="Red circle secondary image"
-        class="absolute top-40 ml-12 w-44 opacity-70"
-      />
+      <transition name="start" appear mode="in-out">
+        <img
+          src="/images/vaccination/vaccination star.png"
+          alt="Red circle secondary image"
+          class="absolute top-40 ml-12 w-44 z-[-1]"
+        />
+      </transition>
     </template>
   </base-wrapper>
 </template>
@@ -144,3 +146,24 @@ const notVaccinatedAndNotRegistered = computed(
     i_am_waiting.value === "had_covid_and_planning_to_be_vaccinated"
 );
 </script>
+
+<style>
+.start-enter-from {
+  width: 176px;
+  height: 176px;
+  margin-left: 48px;
+  top: 320px;
+  transform: scale(0.5);
+}
+
+.start-enter-active {
+  transition: all 0.3s;
+}
+
+.start-enter-to {
+  top: 160px;
+  margin-left: 48px;
+  width: 176px;
+  transform: scale(1);
+}
+</style>

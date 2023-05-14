@@ -40,11 +40,13 @@
       </nav-wrapper>
     </template>
     <template #secondary-image>
-      <img
-        src="/images/identification/people stroke.png"
-        alt="People stroke secondary image"
-        class="absolute top-80 w-96 ml-24 opacity-70"
-      />
+      <transition appear name="identification" mode="in-out">
+        <img
+          src="/images/identification/people stroke.png"
+          alt="People stroke secondary image"
+          class="absolute top-80 w-96 ml-24 z-[-1]"
+        />
+      </transition>
     </template>
   </base-wrapper>
 </template>
@@ -66,3 +68,17 @@ watch(meta, (val) => {
   shouldAllowForward.value = val.valid;
 });
 </script>
+
+<style scoped>
+.identification-enter-from {
+  width: 100px;
+}
+
+.identification-enter-active {
+  transition: all 0.3s;
+}
+
+.identification-enter-to {
+  width: 384px;
+}
+</style>

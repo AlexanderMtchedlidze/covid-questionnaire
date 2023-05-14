@@ -1,84 +1,89 @@
 <template>
   <base-wrapper image-file="/images/politics/bike.png" page-num="4">
-  <template #default>
-
-    <div class="flex flex-col gap-10">
-      <div>
-        <p>
-          რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
-          რომელსაც ჩვენი თანამშრომლები ქმნით, ბევრისთვის არის და ყოფილა წლების
-          განმავლობაში მიზნებისთვის ერთად ბრძოლის მიზეზი, ბევრისთვის კი —
-          ჩვენთან გადმოსვლის.
-        </p>
-        <p class="mt-4">
-          პანდემიის პერიოდში ერთმანეთსაც იშვიათად ვნახულობთ პირისპირ და
-          ყოველდღიური კომუნიკაციაც გაიშვიათდა.
-        </p>
+    <template #default>
+      <div class="flex flex-col gap-10">
+        <div>
+          <p>
+            რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
+            რომელსაც ჩვენი თანამშრომლები ქმნით, ბევრისთვის არის და ყოფილა წლების
+            განმავლობაში მიზნებისთვის ერთად ბრძოლის მიზეზი, ბევრისთვის კი —
+            ჩვენთან გადმოსვლის.
+          </p>
+          <p class="mt-4">
+            პანდემიის პერიოდში ერთმანეთსაც იშვიათად ვნახულობთ პირისპირ და
+            ყოველდღიური კომუნიკაციაც გაიშვიათდა.
+          </p>
+        </div>
+        <div>
+          <group-label>
+            რა სიხშირით შეიძლება გვქონდეს საერთო არაფორმალური ონლაინ შეხვედრები,
+            სადაც ყველა სურვილისამებრ ჩაერთვება?*
+          </group-label>
+          <radio-input
+            v-for="day in meetingDays"
+            :id="day.value"
+            :key="day.value"
+            v-model="non_formal_meetings"
+            name="non_formal_meetings"
+            :value="day.value"
+            :label="day.label"
+          />
+        </div>
+        <div>
+          <group-label>
+            კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*
+          </group-label>
+          <radio-input
+            v-for="day in officeWorkingDays"
+            :id="day.value"
+            :key="day.value"
+            v-model="number_of_days_from_office"
+            name="number_of_days_from_office"
+            :value="day.value"
+            :label="day.value"
+          />
+        </div>
+        <div>
+          <group-label> რას ფიქრობ ფიზიკურ შეკრებებზე? </group-label>
+          <FormTextarea name="what_about_meetings_in_live" />
+        </div>
+        <div>
+          <group-label
+            >რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას
+            შეცვლიდი?
+          </group-label>
+          <FormTextarea name="tell_us_your_opinion_about_us" />
+        </div>
+        <div class="flex justify-end">
+          <ending-button
+            :should-allow-forward="shouldAllowForward"
+          ></ending-button>
+        </div>
       </div>
-      <div>
-        <group-label>
-          რა სიხშირით შეიძლება გვქონდეს საერთო არაფორმალური ონლაინ შეხვედრები,
-          სადაც ყველა სურვილისამებრ ჩაერთვება?*
-        </group-label>
-        <radio-input
-          v-for="day in meetingDays"
-          :id="day.value"
-          :key="day.value"
-          v-model="non_formal_meetings"
-          name="non_formal_meetings"
-          :value="day.value"
-          :label="day.label"
+      <nav-wrapper>
+        <backward-nav to="/vaccination"></backward-nav>
+      </nav-wrapper>
+    </template>
+    <template #secondary-image>
+      <transition appear name="politics" mode="in-out">
+        <img
+          src="/images/politics/politics heart.png"
+          alt="Red circle secondary image"
+          class="absolute top-56 ml-20 w-44 z-[-1]"
         />
-      </div>
-      <div>
-        <group-label>
-          კვირაში რამდენი დღე ისურვებდი ოფისიდან მუშაობას?*
-        </group-label>
-        <radio-input
-          v-for="day in officeWorkingDays"
-          :id="day.value"
-          :key="day.value"
-          v-model="number_of_days_from_office"
-          name="number_of_days_from_office"
-          :value="day.value"
-          :label="day.value"
-        />
-      </div>
-      <div>
-        <group-label> რას ფიქრობ ფიზიკურ შეკრებებზე? </group-label>
-        <FormTextarea name="what_about_meetings_in_live" />
-      </div>
-      <div>
-        <group-label
-          >რას ფიქრობ არსებულ გარემოზე: რა მოგწონს, რას დაამატებდი, რას
-          შეცვლიდი?
-        </group-label>
-        <FormTextarea name="tell_us_your_opinion_about_us" />
-      </div>
-      <div class="flex justify-end">
-        <ending-button
-          :should-allow-forward="shouldAllowForward"
-        ></ending-button>
-      </div>
-    </div>
-    <nav-wrapper>
-      <backward-nav to="/vaccination"></backward-nav>
-    </nav-wrapper>
-  </template>
-  <template #secondary-image>
-    <img
-        src="/images/politics/politics heart.png"
-        alt="Red circle secondary image"
-        class="absolute top-56 ml-20 w-44 opacity-70"
-      />
-  </template>
+      </transition>
+    </template>
   </base-wrapper>
 </template>
 
 <script setup>
-import FormTextarea from "../../components/form/textarea/FormTextarea.vue";
-import EndingButton from "../../components/layout/nav/EndingButton.vue";
-import { ref, watch } from "vue";
+import { ref, watch, defineAsyncComponent } from "vue";
+const FormTextarea = defineAsyncComponent(() =>
+  import("../../components/form/textarea/FormTextarea.vue")
+);
+const EndingButton = defineAsyncComponent(() =>
+  import("../../components/layout/nav/EndingButton.vue")
+);
 import { useStore } from "vuex";
 import { useForm } from "vee-validate";
 
@@ -116,3 +121,20 @@ watch(number_of_days_from_office, (value) => {
   });
 });
 </script>
+
+<style scoped>
+.politics-enter-from {
+  top: 160px;
+  margin-left: 48px;
+  width: 176px;
+  transform: scale(0.5);
+}
+
+.politics-enter-active {
+  transition: all 0.3s;
+}
+
+.politics-enter-to {
+  transform: scale(1);
+}
+</style>

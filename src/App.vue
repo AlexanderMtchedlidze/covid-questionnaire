@@ -1,6 +1,6 @@
 <template>
   <router-view v-slot="{ Component }">
-    <transition>
+    <transition mode="out-in">
       <component :is="Component"></component>
     </transition>
   </router-view>
@@ -29,7 +29,7 @@ body {
 }
 
 .v-enter-active {
-  transition: all .2s ease-out;
+  transition: all .3s;
 }
 
 .v-enter-to {
