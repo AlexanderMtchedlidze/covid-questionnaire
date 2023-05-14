@@ -6,10 +6,7 @@ export default {
       first_name: "სახელის ველი",
       last_name: "გვარის ველი",
       email: "მეილის ველი",
-      covidDate: "პერიოდი",
-      antibodiesDate: 'რიცხვი',
-      antibodiesQuantity: 'ანტისხეულების რაოდენობი',
-      test_date: 'რიცხვი',
+      covid_sickness_date: "პერიოდი",
     },
     messages: {
       required: "{field}ს შევსება სავალდებულოა",

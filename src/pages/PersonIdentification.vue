@@ -55,7 +55,7 @@ import { useForm } from "vee-validate";
 
 const nameRules = computed(() => ({
   required: true,
-  min: 2,
+  min: 3,
 }));
 
 const { meta } = useForm();

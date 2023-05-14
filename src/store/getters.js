@@ -1,11 +1,9 @@
 const ISOFormattedDate = (dateString) => {
-  if (dateString) {
-    const [day, month, year] = dateString.split("/");
+  const [day, month, year] = dateString.split("/");
 
-    const date = new Date(`20${year}`, month - 1, day);
+  const date = new Date(`20${year}`, month - 1, day);
 
-    return date.toISOString();
-  }
+  return date.toISOString();
 };
 
 export default {
@@ -31,16 +29,9 @@ export default {
       tell_us_your_opinion_about_us: getters.tell_us_your_opinion_about_us,
     };
     if (getters.covid_sickness_date) {
-      antibodies.covid_sickness_date = ISOFormattedDate(
+      object.covid_sickness_date = ISOFormattedDate(
         getters.covid_sickness_date
       );
-    }
-    const i_am_waiting = getters.i_am_waiting;
-    if (i_am_waiting) {
-      object = {
-        ...object,
-        i_am_waiting,
-      };
     }
     return object;
   },
