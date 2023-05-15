@@ -1,13 +1,15 @@
 <template>
   <div class="flex items-center gap-5 mb-2">
-    <Field
-      :id="id"
-      :name="name"
-      type="radio"
-      :value="value"
-      class="accent-dark-gray w-4 h-4"
-      @click="setValue"
-    />
+    <Field v-slot="{ field }" :value="modelValue" :name="name">
+      <input
+        :id="id"
+        v-bind="field"
+        type="radio"
+        :value="value"
+        class="accent-dark-gray w-4 h-4"
+        @click="setValue"
+      />
+    </Field>
     <input-label :for="id">{{ label }}</input-label>
   </div>
 </template>
@@ -27,6 +29,10 @@ const props = defineProps({
   id: {
     required: true,
     type: String,
+  },
+  modelValue: {
+    required: true,
+    type: [String, Boolean],
   },
   value: { required: true, type: [String, Boolean] },
 });
