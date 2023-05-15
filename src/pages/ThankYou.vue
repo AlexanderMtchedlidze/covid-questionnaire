@@ -6,7 +6,7 @@
       <div v-if="!isAnimating">
         <img
           ref="bigSparkle"
-          src="/icons/sparkle.svg"
+          src="/sparkle.svg"
           alt="Big sparkle on the left"
           class="h-10 absolute -ml-36 -mt-12"
         />
@@ -24,7 +24,7 @@
       <div v-if="!isAnimating">
         <img
           ref="smallSparkle"
-          src="/icons/sparkle.svg"
+          src="/sparkle.svg"
           alt="Big sparkle on the right"
           class="h-6 ml-28 mt-2 absolute"
         />

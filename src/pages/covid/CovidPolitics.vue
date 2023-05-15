@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper image-file="/images/politics/bike.png" page-num="4">
+  <base-wrapper image-file="/bike.png" page-num="4">
     <template #default>
       <div class="flex flex-col gap-10">
         <div>
@@ -67,7 +67,7 @@
     <template #secondary-image>
       <transition appear name="politics" mode="in-out">
         <img
-          src="/images/politics/politics heart.png"
+          src="/politics_heart.png"
           alt="Red circle secondary image"
           class="absolute top-56 ml-20 w-44 z-[-1]"
         />

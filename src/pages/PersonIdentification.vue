@@ -1,6 +1,6 @@
 <template>
   <base-wrapper
-    image-file="/images/identification/identification.png"
+    image-file="/identification.png"
     page-num="1"
   >
     <template #default>
@@ -26,7 +26,7 @@
         />
       </div>
       <div class="py-10">
-        <img src="/icons/form line.svg" alt="footer line" />
+        <img src="/form_line.svg" alt="footer line" />
         <p class="font-bold text-gray-500 pt-2">
           *-ით მონიშნული ველების შევსება <br />
           სავალდებულოა
@@ -42,7 +42,7 @@
     <template #secondary-image>
       <transition appear name="identification" mode="in-out">
         <img
-          src="/images/identification/people stroke.png"
+          src="/people_stroke.png"
           alt="People stroke secondary image"
           class="absolute top-80 w-96 ml-24 z-[-1]"
         />

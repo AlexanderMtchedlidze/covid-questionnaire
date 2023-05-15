@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper image-file="/images/vaccination/doctor.png" page-num="3">
+  <base-wrapper image-file="/doctor.png" page-num="3">
     <template #default>
       <div class="flex flex-col gap-10">
         <div>
@@ -72,7 +72,7 @@
     <template #secondary-image>
       <transition name="start" appear mode="in-out">
         <img
-          src="/images/vaccination/vaccination star.png"
+          src="/vaccination_star.png"
           alt="Red circle secondary image"
           class="absolute top-40 ml-12 w-44 z-[-1]"
         />

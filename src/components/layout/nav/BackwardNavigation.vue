@@ -1,7 +1,7 @@
 <template>
   <router-link :to="props.to">
     <img
-      src="/icons/nav/backward active.svg"
+      src="/backward_active.svg"
       alt="Allowed forward navigation vector"
     />
   </router-link>

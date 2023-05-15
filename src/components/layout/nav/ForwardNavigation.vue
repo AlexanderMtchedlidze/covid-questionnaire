@@ -1,13 +1,13 @@
 <template>
   <router-link v-if="shouldAllowForward" :to="to">
     <img
-      src="/icons/nav/forward active.svg"
+      src="/forward_active.svg"
       alt="Allowed forward navigation vector"
     />
   </router-link>
   <img
     v-else
-    src="/icons/nav/forward inactive.svg"
+    src="/forward_inactive.svg"
     alt="Unallowed forward navigation vector"
   />
 </template>

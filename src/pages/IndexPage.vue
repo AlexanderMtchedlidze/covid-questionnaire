@@ -3,7 +3,7 @@
     class="h-screen flex flex-col justify-center items-center bg-gray-20 gap-16"
   >
     <img
-      src="/icons/main logo.svg"
+      src="/main_logo.svg"
       alt="Main Logo of a Company"
       class="animate-logo-appear absolute top-44"
       @animationend="startTextAnimation"

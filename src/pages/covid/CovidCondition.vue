@@ -1,5 +1,5 @@
 <template>
-  <base-wrapper image-file="/images/condition/vaccinate.png" page-num="2">
+  <base-wrapper image-file="/vaccinate.png" page-num="2">
     <template #default>
       <div class="flex flex-col gap-10">
         <div>
@@ -60,7 +60,7 @@
     <template #secondary-image>
       <transition name="condition" appear mode="in-out">
         <img
-          src="/images/condition/condition circle.png"
+          src="/condition_circle.png"
           alt="Red circle secondary image"
           class="absolute top-80 w-44 ml-12 z-[-1]"
         />
