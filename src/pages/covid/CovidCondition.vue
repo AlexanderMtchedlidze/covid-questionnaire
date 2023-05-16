@@ -76,6 +76,8 @@ import { useStore } from "vuex";
 
 const store = useStore();
 
+store.dispatch("initializeFromLocalStorage");
+
 const hadCovidOptions = store.getters.hadCovidOptions;
 const hadAntibodyTestOptions = store.getters.hadAntibodyTestOptions;
 

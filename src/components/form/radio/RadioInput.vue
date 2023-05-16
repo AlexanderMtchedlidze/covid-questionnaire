@@ -2,9 +2,9 @@
   <div class="flex items-center gap-5 mb-2">
     <Field
       :id="id"
-      v-model="model"
       :value="value"
       :name="name"
+      v-model="model"
       type="radio"
       class="accent-dark-gray w-4 h-4"
       @click="setValue"
@@ -29,11 +29,11 @@ const props = defineProps({
     required: true,
     type: String,
   },
-  modelValue: {
-    required: true,
-    type: [String, Boolean],
-  },
   value: { required: true, type: [String, Boolean] },
+  modelValue: {
+    type: [String, Boolean],
+    required: true,
+  },
 });
 
 const model = props.modelValue;
