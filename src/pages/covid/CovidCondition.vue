@@ -82,12 +82,12 @@ const hadAntibodyTestOptions = store.getters.hadAntibodyTestOptions;
 const { meta } = useForm();
 
 const shouldAllowForward = ref(
-  meta.value.valid && !!store.getters.isConditionPageCompleted
+  meta.value.valid && store.getters.isConditionPageCompleted
 );
 
 watch(meta, (newVal) => {
   shouldAllowForward.value =
-    newVal.valid && !!store.getters.isConditionPageCompleted;
+    newVal.valid && store.getters.isConditionPageCompleted;
 });
 
 const had_covid = ref(store.getters.had_covid);
