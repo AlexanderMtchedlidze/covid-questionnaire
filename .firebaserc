@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "covid-c4e67",
+    "staging": "covid-c4e67"
+  },
+  "targets": {},
+  "etags": {}
+}
