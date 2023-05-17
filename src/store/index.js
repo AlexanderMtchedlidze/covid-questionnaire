@@ -5,7 +5,6 @@ import conditionModule from "./modules/condition/index.js";
 import vaccinationModule from "./modules/vaccination/index.js";
 import politicsModule from "./modules/politics/index.js";
 import actions from "./actions.js";
-import getters from "./getters.js";
 
 const store = createStore({
   modules: {
@@ -15,7 +14,6 @@ const store = createStore({
     politics: politicsModule,
   },
   actions,
-  getters,
   mutations: {
     setInputValue(state, payload) {
       state[payload.name] = payload.value;
