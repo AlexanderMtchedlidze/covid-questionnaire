@@ -4,7 +4,7 @@
 
 ---
 
-The Covid Questionnaire is an application that new employees of Redbury have to fill out to find out how they feel about the Covid situation and how Redbury can improve and support the company's internal Covid policy.
+The Covid Questionnaire is an application that new employees of Redberry have to fill out to find out how they feel about the Covid situation and how Redberry can improve and support the company's internal Covid policy.
 
 #
 
