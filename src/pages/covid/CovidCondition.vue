@@ -87,8 +87,6 @@ const { meta } = useForm();
 
 const shouldAllowForward = ref(meta.value.valid);
 
-console.log(shouldAllowForward.value);
-
 watch(meta, (newVal) => {
   shouldAllowForward.value = newVal.valid;
 });
@@ -102,7 +100,7 @@ watch(had_covid, (value) => {
   });
 });
 
-const had_antibody_test = ref(store.getters.had_antibody_test);
+const had_antibody_test = ref(String(store.getters.had_antibody_test));
 watch(had_antibody_test, (newVal) => {
   store.dispatch({
     type: "setInputValue",
