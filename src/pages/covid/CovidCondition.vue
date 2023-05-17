@@ -114,10 +114,10 @@ watch(had_antibody_test, (newVal) => {
 const hadCovid = computed(() => had_covid.value === "yes");
 
 const hadAntibodyTest = computed(
-  () => had_covid.value === "yes" && had_antibody_test.value
+  () => had_covid.value === "yes" && had_antibody_test.value === "true"
 );
 const didntHaveAntibodyTest = computed(
-  () => had_covid.value === "yes" && had_antibody_test.value === false
+  () => had_covid.value === "yes" && had_antibody_test.value === "false"
 );
 </script>
 
