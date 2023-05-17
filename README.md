@@ -31,19 +31,11 @@ git clone https://github.com/RedberryInternship/-aleqsandre-mtchedlidze-covid-qu
 ```
 
 
-2. after you have installed all the PHP dependencies, it's time to install all the JS dependencies:
+2. It's time to install all the JS dependencies:
 
 ```sh
 npm install
 ```
-
-and also:
-
-```sh
-npm run dev
-```
-
-in order to build your JS/SaaS resources.
 
 ##### Now, you should be good to go!
 
