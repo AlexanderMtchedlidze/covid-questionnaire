@@ -21,7 +21,7 @@ export default {
       had_covid: getters.had_covid,
       had_antibody_test: getters.had_antibody_test,
       antibodies,
-      had_vaccine: getters.had_vaccine,
+      had_vaccine: JSON.parse(getters.had_vaccine),
       vaccination_stage: getters.vaccination_stage,
       non_formal_meetings: getters.non_formal_meetings,
       number_of_days_from_office: getters.number_of_days_from_office,

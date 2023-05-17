@@ -12,6 +12,7 @@
             name="had_covid"
             :value="op.value"
             :label="op.label"
+            rules="required"
           />
         </div>
         <div v-if="hadCovid">
@@ -24,6 +25,7 @@
             name="had_antibody_test"
             :value="op.value"
             :label="op.label"
+            rules="required"
           />
         </div>
         <div v-if="hadAntibodyTest">
@@ -83,13 +85,12 @@ const hadAntibodyTestOptions = store.getters.hadAntibodyTestOptions;
 
 const { meta } = useForm();
 
-const shouldAllowForward = ref(
-  meta.value.valid && store.getters.isConditionPageCompleted
-);
+const shouldAllowForward = ref(meta.value.valid);
+
+console.log(shouldAllowForward.value);
 
 watch(meta, (newVal) => {
-  shouldAllowForward.value =
-    newVal.valid && store.getters.isConditionPageCompleted;
+  shouldAllowForward.value = newVal.valid;
 });
 
 const had_covid = ref(store.getters.had_covid);

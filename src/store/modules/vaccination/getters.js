@@ -1,12 +1,9 @@
 const getValue = (state, key) => state[key] || localStorage.getItem(key);
 
 export default {
-  isVaccinationPageCompleted: (_, getters) =>
-    (getters.had_vaccine && getters.vaccination_stage) ||
-    (getters.had_vaccine === false && getters.i_am_waiting),
   hadVaccineOptions: () => [
-    { label: "კი", value: true, id: "had_vaccine_yes" },
-    { label: "არა", value: false, id: "had_vaccine_no" },
+    { label: "კი", value: "true", id: "had_vaccine_yes" },
+    { label: "არა", value: "false", id: "had_vaccine_no" },
   ],
   vaccinationStageOptions: () => [
     {
@@ -30,7 +27,7 @@ export default {
       value: "had_covid_and_planning_to_be_vaccinated",
     },
   ],
-  had_vaccine: (state) => JSON.parse(getValue(state, "had_vaccine")),
+  had_vaccine: (state) => getValue(state, "had_vaccine"),
   vaccination_stage: (state) => getValue(state, "vaccination_stage"),
   i_am_waiting: (state) => getValue(state, "i_am_waiting"),
 };

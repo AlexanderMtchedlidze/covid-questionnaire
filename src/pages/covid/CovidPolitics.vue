@@ -27,6 +27,7 @@
             name="non_formal_meetings"
             :value="day.value"
             :label="day.label"
+            rules="required"
           />
         </div>
         <div>
@@ -41,6 +42,7 @@
             name="number_of_days_from_office"
             :value="day.value"
             :label="day.value"
+            rules="required"
           />
         </div>
         <div>
@@ -89,12 +91,12 @@ import { useForm } from "vee-validate";
 
 const store = useStore();
 
-const shouldAllowForward = ref(store.getters.isPoliticsPageCompleted);
-
 const { meta } = useForm();
 
+const shouldAllowForward = ref(meta.value.valid);
+
 watch(meta, () => {
-  shouldAllowForward.value = store.getters.isPoliticsPageCompleted;
+  shouldAllowForward.value = meta.value.valid;
 });
 
 const meetingDays = store.getters.meetingDays;

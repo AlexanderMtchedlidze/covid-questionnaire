@@ -1,13 +1,6 @@
 const getValue = (state, key) => state[key] || localStorage.getItem(key);
 
 export default {
-  isConditionPageCompleted: (state, getters) => {
-    return (
-      getters.covid_sickness_date !== null ||
-      (getters.had_covid === "yes" && getters.had_antibody_test) ||
-      (getters.had_covid && getters.had_covid !== "yes")
-    );
-  },
   hadCovidOptions: () => [
     { label: "კი", value: "yes", id: "had_covid_yes" },
     { label: "არა", value: "no", id: "had_covid_no" },

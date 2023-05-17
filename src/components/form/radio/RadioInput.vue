@@ -2,11 +2,12 @@
   <div class="flex items-center gap-5 mb-2">
     <Field
       :id="id"
+      v-model="model"
       :value="value"
       :name="name"
-      v-model="model"
       type="radio"
       class="accent-dark-gray w-4 h-4"
+      :rules="rules"
       @click="setValue"
     />
     <input-label :for="id">{{ label }}</input-label>
@@ -33,6 +34,11 @@ const props = defineProps({
   modelValue: {
     type: [String, Boolean],
     required: true,
+  },
+  rules: {
+    type: String,
+    required: false,
+    default: "",
   },
 });
 

@@ -1,8 +1,6 @@
 const getValue = (state, key) => state[key] || localStorage.getItem(key);
 
-export default {
-  isPoliticsPageCompleted: (_, getters) =>
-    !!getters.non_formal_meetings && !!getters.number_of_days_from_office,
+export default { 
   meetingDays: () => [
     { label: "კვირაში ორჯერ", value: "twice_a_week" },
     { label: "კვირაში ერთხელ", value: "once_a_week" },

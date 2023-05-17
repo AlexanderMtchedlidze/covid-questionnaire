@@ -12,6 +12,7 @@
             name="had_vaccine"
             :value="op.value"
             :label="op.label"
+            rules="required"
           />
         </div>
         <div v-if="isVaccinated">
@@ -24,6 +25,7 @@
             name="vaccination_stage"
             :value="op.value"
             :label="op.label"
+            rules="required"
           />
         </div>
         <div v-else-if="isNotVaccinated">
@@ -36,6 +38,7 @@
             name="i_am_waiting"
             :value="op.value"
             :label="op.label"
+            rules="required"
           />
         </div>
         <div v-if="vaccinatedAndNotRegisteredOnTheSecond" class="text-lg">
@@ -94,10 +97,10 @@ const iAmWaitingForOptions = store.getters.iAmWaitingForOptions;
 
 const { meta } = useForm();
 
-const shouldAllowForward = ref(!!store.getters.isVaccinationPageCompleted);
+const shouldAllowForward = ref(meta.value.valid);
 
-watch(meta, () => {
-  shouldAllowForward.value = !!store.getters.isVaccinationPageCompleted;
+watch(meta, (newVal) => {
+  shouldAllowForward.value = newVal.valid;
 });
 
 const had_vaccine = ref(store.getters.had_vaccine);
@@ -126,9 +129,9 @@ const vaccinatedAndNotRegisteredOnTheSecond = computed(
     vaccination_stage.value === "first_dosage_and_not_registered_yet"
 );
 
-const isVaccinated = computed(() => had_vaccine.value === true);
+const isVaccinated = computed(() => had_vaccine.value === "true");
 
-const isNotVaccinated = computed(() => had_vaccine.value === false);
+const isNotVaccinated = computed(() => had_vaccine.value === "false");
 
 const i_am_waiting = ref(store.getters.i_am_waiting);
 
