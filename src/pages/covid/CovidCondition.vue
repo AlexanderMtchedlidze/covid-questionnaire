@@ -111,7 +111,7 @@ watch(had_covid, (value) => {
   });
 });
 
-const had_antibody_test = ref(store.getters.had_antibody_test.toString());
+const had_antibody_test = ref(store.getters.had_antibody_test?.toString());
 watch(had_antibody_test, (newVal) => {
   store.dispatch({
     type: "setInputValue",
