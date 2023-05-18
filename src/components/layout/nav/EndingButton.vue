@@ -1,5 +1,10 @@
 <template>
-  <router-link v-if="shouldAllowForward" to="/thank-you" :class="buttonClass">
+  <router-link
+    v-if="shouldAllowForward"
+    to="/thank-you"
+    :class="buttonClass"
+    @click="sendAllGatheredData"
+  >
     დასრულება
   </router-link>
   <button v-else :class="buttonClass" class="button__inactive">
@@ -9,12 +14,20 @@
 
 <script setup>
 import { computed } from "vue";
+import { useStore } from "vuex";
+
 const props = defineProps({
   shouldAllowForward: {
     type: Boolean,
     required: true,
   },
 });
+
+const store = useStore();
+const sendAllGatheredData = () => {
+  store.dispatch("sendAllGatheredData");
+};
+
 const buttonClass = computed(() => [
   "text-white",
   "px-6",

@@ -15,7 +15,7 @@
 <script setup>
 defineProps({
   to: {
-    type: String,
+    type: [String, Object],
     required: true,
   },
   shouldAllowForward: {

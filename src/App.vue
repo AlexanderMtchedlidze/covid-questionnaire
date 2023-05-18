@@ -8,8 +8,8 @@
 
 <script setup>
 import { configure } from "vee-validate";
-import "./validation/rules.js";
-import customValMessages from "./lang/messages.js";
+import "./config/vee validate/rules.js"
+import customValMessages from "./config/vee validate/messages.js";
 
 configure({
   ...customValMessages,

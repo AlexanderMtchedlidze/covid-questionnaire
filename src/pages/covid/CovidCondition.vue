@@ -60,7 +60,7 @@
       </nav-wrapper>
     </template>
     <template #secondary-image>
-      <transition name="condition" appear mode="in-out">
+      <transition :name="transitionName" mode="in-out" appear>
         <img
           src="/condition_circle.png"
           alt="Red circle secondary image"
@@ -73,10 +73,21 @@
 
 <script setup>
 import { ref, watch, computed } from "vue";
+import { useRoute } from "vue-router";
 import { useForm } from "vee-validate";
 import { useStore } from "vuex";
 
 const store = useStore();
+
+const route = useRoute();
+
+const goingFromIndentification = computed(
+  () => route.query.from === "identification"
+);
+
+const transitionName = computed(() => {
+  return goingFromIndentification.value ? "condition-square" : "condition-star";
+});
 
 store.dispatch("initializeFromLocalStorage");
 
@@ -100,7 +111,7 @@ watch(had_covid, (value) => {
   });
 });
 
-const had_antibody_test = ref(String(store.getters.had_antibody_test));
+const had_antibody_test = ref(store.getters.had_antibody_test.toString());
 watch(had_antibody_test, (newVal) => {
   store.dispatch({
     type: "setInputValue",
@@ -120,7 +131,7 @@ const didntHaveAntibodyTest = computed(
 </script>
 
 <style scoped>
-.condition-enter-from {
+.condition-square-enter-from {
   width: 600px;
   height: 80px;
   top: 300px;
@@ -129,15 +140,27 @@ const didntHaveAntibodyTest = computed(
   transform: translateX(-70px);
 }
 
-.condition-enter-active {
+.condition-star-enter-from {
+  top: 160px;
+  margin-left: 48px;
+  width: 176px;
+  transform: scale(0.5);
+}
+
+.condition-square-enter-active,
+.condition-star-enter-active {
   transition: all 0.3s;
 }
 
-.condition-enter-to {
+.condition-square-enter-to {
   clip-path: inset(0);
   width: 176px;
   height: 176px;
   margin-left: 48px;
   top: 320px;
+}
+
+.condition-star-enter-to {
+  transform: scale(1);
 }
 </style>
