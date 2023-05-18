@@ -65,7 +65,7 @@
         </div>
       </div>
       <nav-wrapper>
-        <backward-nav to="/condition"></backward-nav>
+        <backward-nav :to="conditionLink"></backward-nav>
         <forward-nav
           to="/politics"
           :should-allow-forward="shouldAllowForward"
@@ -148,6 +148,10 @@ const notVaccinatedAndNotRegistered = computed(
     had_vaccine.value === false &&
     i_am_waiting.value === "had_covid_and_planning_to_be_vaccinated"
 );
+
+const conditionLink = computed(() => {
+  return { path: "/condition", query: { from: "vaccination" } };
+});
 </script>
 
 <style>

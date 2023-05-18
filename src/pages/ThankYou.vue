@@ -35,11 +35,6 @@
 
 <script setup>
 import { ref } from "vue";
-import { useStore } from "vuex";
-
-const store = useStore();
-
-store.dispatch("sendAllGatheredData");
 
 const bigSparkle = ref(null);
 const smallSparkle = ref(null);

@@ -1,8 +1,5 @@
 <template>
-  <base-wrapper
-    image-file="/identification.png"
-    page-num="1"
-  >
+  <base-wrapper image-file="/identification.png" page-num="1">
     <template #default>
       <div class="flex flex-col gap-8">
         <text-input
@@ -35,7 +32,7 @@
       <nav-wrapper>
         <forward-nav
           :should-allow-forward="shouldAllowForward"
-          to="/condition"
+          :to="conditionLink"
         ></forward-nav>
       </nav-wrapper>
     </template>
@@ -66,6 +63,10 @@ const shouldAllowForward = ref(meta.value.valid && meta.value.dirty);
 
 watch(meta, (val) => {
   shouldAllowForward.value = val.valid;
+});
+
+const conditionLink = computed(() => {
+  return { path: "/condition", query: { from: "identification" } };
 });
 </script>
 
