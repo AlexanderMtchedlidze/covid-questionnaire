@@ -17,17 +17,12 @@ export default {
         "light-cyan": "#59acc6",
       },
       keyframes: {
-        appear: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
         "logo-appear": {
           "0%": { transform: "scale(20)" },
           "100%": { transform: "scale(1)" },
         },
       },
       animation: {
-        appear: "appear .5s ease-in",
         "logo-appear": "logo-appear .5s ease-in",
       },
     },

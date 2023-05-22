@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input-label v-if="label" :for="name" class="font-bold">{{
+    <input-label v-if="label" :for="name" class="font-bold text-[22px]">{{
       label
     }}</input-label>
     <Field
@@ -10,9 +10,11 @@
       :name="name"
       :placeholder="placeholder"
       :rules="rules"
-      class="bg-transparent mb-1 border border-black mt-2 py-2 px-4 w-full text-lg placeholder-gray-500"
+      class="bg-transparent mb-1 border border-dark-gray mt-3 py-6 px-5 w-full text-lg placeholder:text-dark-gray text-dark-gray h-12"
     />
-    <ErrorMessage :name="name" class="text-invalid text-sm" />
+    <div class="ml-5">
+      <ErrorMessage :name="name" class="text-invalid" />
+    </div>
   </div>
 </template>
 

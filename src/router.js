@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 const IndexPage = () => import("./pages/IndexPage.vue");
 const PersonIdentification = () => import("./pages/PersonIdentification.vue");
-const CovidCondition = () => import("./pages/covid/CovidCondition.vue");
-const CovidVaccination = () => import("./pages/covid/CovidVaccination.vue");
-const CovidPolitics = () => import("./pages/covid/CovidPolitics.vue");
+const CovidCondition = () => import("./pages/CovidCondition.vue");
+const CovidVaccination = () => import("./pages/CovidVaccination.vue");
+const CovidPolitics = () => import("./pages/CovidPolitics.vue");
 const ThankYou = () => import("./pages/ThankYou.vue");
 
 const router = createRouter({

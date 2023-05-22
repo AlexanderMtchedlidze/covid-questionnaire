@@ -14,7 +14,7 @@
 
 <script setup>
 import { computed } from "vue";
-import sendAllGatheredData from "../../../services/axios/sendAllGatheredData.js";
+import sendAllGatheredData from "../services/axios/sendAllGatheredData.js";
 
 const props = defineProps({
   shouldAllowForward: {

@@ -5,28 +5,28 @@ import router from "./router.js";
 import store from "./store/index.js";
 import { defineAsyncComponent } from "vue";
 const TextInput = defineAsyncComponent(() =>
-  import("./components/form/TextInput.vue")
+  import("./components/TextInput.vue")
 );
 const InputLabel = defineAsyncComponent(() =>
-  import("./components/form/InputLabel.vue")
+  import("./components/InputLabel.vue")
 );
 const RadioInput = defineAsyncComponent(() =>
-  import("./components/form/radio/RadioInput.vue")
+  import("./components/RadioInput.vue")
 );
 const GroupLabel = defineAsyncComponent(() =>
-  import("./components/form/GroupLabel.vue")
+  import("./components/GroupLabel.vue")
 );
 const NavigationWrapper = defineAsyncComponent(() =>
-  import("./components/layout/nav/NavigationWrapper.vue")
+  import("./components/NavigationWrapper.vue")
 );
 const ForwardNavigation = defineAsyncComponent(() =>
-  import("./components/layout/nav/ForwardNavigation.vue")
+  import("./components/ForwardNavigation.vue")
 );
 const BackwardNavigation = defineAsyncComponent(() =>
-  import("./components/layout/nav/BackwardNavigation.vue")
+  import("./components/BackwardNavigation.vue")
 );
 const BaseWrapper = defineAsyncComponent(() =>
-  import("./components/UI/BaseWrapper.vue")
+  import("./components/BaseWrapper.vue")
 );
 
 const app = createApp(App);

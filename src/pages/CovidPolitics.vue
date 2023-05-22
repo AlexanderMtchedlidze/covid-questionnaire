@@ -1,7 +1,7 @@
 <template>
   <base-wrapper image-file="/bike.png" page-num="4">
     <template #default>
-      <div class="flex flex-col gap-10">
+      <div class="flex flex-col gap-10 text-xl">
         <div>
           <p>
             რედბერის მთავარი ღირებულება ჩვენი გუნდის თითოეული წევრია. გარემო,
@@ -81,10 +81,10 @@
 <script setup>
 import { ref, watch, defineAsyncComponent } from "vue";
 const FormTextarea = defineAsyncComponent(() =>
-  import("../../components/form/textarea/FormTextarea.vue")
+  import("../components/FormTextarea.vue")
 );
 const EndingButton = defineAsyncComponent(() =>
-  import("../../components/layout/nav/EndingButton.vue")
+  import("../components/EndingButton.vue")
 );
 import { useStore } from "vuex";
 import { useForm } from "vee-validate";
