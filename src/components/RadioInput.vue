@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-5 mb-2">
+  <div class="flex items-center gap-5 mb-2 ml-5">
     <Field
       :id="id"
       v-model="model"
@@ -10,7 +10,7 @@
       :rules="rules"
       @click="setValue"
     />
-    <input-label :for="id">{{ label }}</input-label>
+    <input-label :for="id" class="text-[20px]">{{ label }}</input-label>
   </div>
 </template>
 

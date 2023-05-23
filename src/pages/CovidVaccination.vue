@@ -41,7 +41,7 @@
             rules="required"
           />
         </div>
-        <div v-if="vaccinatedAndNotRegisteredOnTheSecond" class="text-lg">
+        <div v-if="vaccinatedAndNotRegisteredOnTheSecond" class="text-lg ml-14">
           <p>
             რომ არ გადადო, <br />
             ბარემ ახლავე დარეგისტრირდი
@@ -50,7 +50,7 @@
             </a>
           </p>
         </div>
-        <div v-else-if="notVaccinatedAndNotRegistered" class="text-lg">
+        <div v-else-if="notVaccinatedAndNotRegistered" class="text-lg ml-14">
           <p>
             ახალი პროტოკოლით კოვიდის გადატანიდან 1 თვის შემდეგ შეგიძლიათ
             ვაქცინის გაკეთება.
@@ -125,7 +125,7 @@ watch(vaccination_stage, (value) => {
 
 const vaccinatedAndNotRegisteredOnTheSecond = computed(
   () =>
-    had_vaccine.value &&
+    had_vaccine.value === "true" &&
     vaccination_stage.value === "first_dosage_and_not_registered_yet"
 );
 
@@ -145,7 +145,7 @@ watch(i_am_waiting, (value) => {
 
 const notVaccinatedAndNotRegistered = computed(
   () =>
-    had_vaccine.value === false &&
+    had_vaccine.value === "false" &&
     i_am_waiting.value === "had_covid_and_planning_to_be_vaccinated"
 );
 

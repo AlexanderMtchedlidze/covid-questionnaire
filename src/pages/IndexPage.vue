@@ -1,11 +1,11 @@
 <template>
   <section
-    class="h-screen flex flex-col justify-center items-center bg-gray-20 gap-16"
+    class="h-screen flex flex-col justify-center relative items-center bg-gray-20 gap-16"
   >
     <img
       src="/main_logo.svg"
       alt="Main Logo of a Company"
-      class="animate-logo-appear absolute top-44"
+      class="animate-logo-appear absolute mb-52"
       @animationend="startTextAnimation"
     />
     <transition name="text">

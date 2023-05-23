@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-44 py-10 h-screen">
+  <div class="mx-20 md:mx-28 lg:mx-36 mx-44 py-10 h-screen">
     <div class="sticky top-0 z-10">
       <the-header :current-page-num="pageNum" />
     </div>
@@ -7,7 +7,7 @@
       <div class="flex-1 pb-4">
         <slot></slot>
       </div>
-      <div class="w-1/2 h-12">
+      <div class="w-1/2 h-12 hidden lg:block">
         <img
           :src="imageFile"
           alt="Image related to the left placed form content"
@@ -21,7 +21,7 @@
 
 <script setup>
 import { defineAsyncComponent } from "vue";
-const TheHeader = defineAsyncComponent(() => import("../layout/TheHeader.vue"));
+const TheHeader = defineAsyncComponent(() => import("./TheHeader.vue"));
 defineProps({
   imageFile: {
     type: String,

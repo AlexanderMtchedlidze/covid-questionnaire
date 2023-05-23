@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="props.for" class="block text-lg">
+    <label :for="props.for" class="block">
       <span>
         <slot></slot>
       </span>

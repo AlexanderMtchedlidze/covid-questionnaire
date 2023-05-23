@@ -1,14 +1,10 @@
-import axios from "axios";
-
-import config from "./config.js";
+import { covidAPI } from "../../config/axios/index.js";
 
 import endpoints from "./endpoints.js";
 
 import formatDate from "../../utilities/formatDate.js";
 
-const B = new URL(config.base_url);
-
-const fetchUrl = new URL(endpoints.api_endpoint + endpoints.create_endpoint, B);
+const createEndpoint = endpoints.create_endpoint;
 
 const sendAllGatheredData = async () => {
   let antibodies = {};
@@ -59,12 +55,8 @@ const sendAllGatheredData = async () => {
       "tell_us_your_opinion_about_us"
     );
   }
-  try {
-    const response = await axios.post(fetchUrl, object);
-    console.log(response);
-  } catch (e) {
-    console.log(e);
-  }
+  covidAPI.post(createEndpoint, object);
+  localStorage.clear();
 };
 
 export default sendAllGatheredData;

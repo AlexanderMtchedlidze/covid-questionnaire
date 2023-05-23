@@ -33,11 +33,12 @@
             თუ გახსოვს, გთხოვ მიუთითე ტესტის მიახლოებითი რიცხვი და ანტისხეულების
             რაოდენობა?*
           </group-label>
-          <text-input name="test_date" placeholder="რიცხვი" />
+          <text-input name="test_date" placeholder="რიცხვი" class="ml-5" />
           <text-input
             name="number"
             type="number"
             placeholder="ანტისხეულების რაოდენობა"
+            class="ml-5"
           />
         </div>
         <div v-if="didntHaveAntibodyTest">
@@ -48,6 +49,7 @@
             name="covid_sickness_date"
             rules="required|date_format"
             placeholder="დდ/თთ/წწ"
+            class="ml-5"
           />
         </div>
       </div>
