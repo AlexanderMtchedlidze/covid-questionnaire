@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-20 md:mx-28 lg:mx-36 mx-44 py-10 h-screen">
+  <div class="mx-20 md:mx-28 lg:mx-36 xl:mx-44 py-10 h-screen">
     <div class="sticky top-0 z-10">
       <the-header :current-page-num="pageNum" />
     </div>
