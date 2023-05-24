@@ -45,7 +45,10 @@
           <p>
             რომ არ გადადო, <br />
             ბარემ ახლავე დარეგისტრირდი
-            <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
+            <a
+              href="https://booking.moh.gov.ge/"
+              target="_blank"
+              class="text-dark-cyan"
               >https://booking.moh.gov.ge/
             </a>
           </p>
@@ -58,7 +61,10 @@
 
           <p class="mt-3">
             👉 რეგისტრაციის ბმული <br />
-            <a href="https://booking.moh.gov.ge/" class="text-dark-cyan"
+            <a
+              href="https://booking.moh.gov.ge/"
+              target="_blank"
+              class="text-dark-cyan"
               >https://booking.moh.gov.ge/</a
             >
           </p>
