@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        arial: ["Arial", "sans-serif"],
+        Arial: ["Arial", "sans-serif"],
         "Anonymous-Pro": ["Anonymous Pro", "mono"],
       },
       backgroundColor: {

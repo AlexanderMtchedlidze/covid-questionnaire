@@ -14,7 +14,10 @@ configure({
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap");
+
 body {
   background-color: #eaeaea;
+  font-family: "Arial";
 }
 </style>
